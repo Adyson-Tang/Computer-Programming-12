@@ -10,10 +10,11 @@ color teal = #62FAD3;
 color yellow = #FAEB62;
 color brown = #EA925F;
 color grey = #2C2B2A;
+int y = 105;
 
 //Childrens drawing of house
 void setup () {
-  size (400, 600);
+  size (400, 500);
 }
 
 void draw () {
@@ -23,18 +24,30 @@ void draw () {
   //sun
   fill (yellow);
   strokeWeight (1);
-  line (115, 105, 115, 50);
-  line (115, 105, 130, 60);
-  line (115, 105, 150, 80);
-  line (115, 105, 150, 110);
-  line (115, 105, 145, 135);
-  line (115, 105, 115, 150);
-  line (115, 105, 90, 60);
-  line (115, 105, 80, 80);
-  line (115, 105, 70, 105);
-  line (115, 105, 80, 140);
+  line (115, y, 115, y - 55);
+  line (115, y, 130, y - 45);
+  line (115, y, 150, y - 25);
+  line (115, y, 150, y + 5);
+  line (115, y, 145, y + 20);
+  line (115, y, 115, y + 45);
+  line (115, y, 90, y - 45);
+  line (115, y, 80, y - 25);
+  line (115, y, 70, y);
+  line (115, y, 80, y + 35);
   
-  ellipse (115, 105, 55, 60);
+  ellipse (115, y, 55, 58);
+  
+  //face
+  //smile
+  ellipse (115, y + 5, 26, 25);
+  stroke (yellow);
+  rect (100, y - 15, 36, 20);
+  //eyes
+  stroke (grey);
+  fill (grey);
+  circle (105, y - 5, 5);
+  circle (125, y - 5, 5);
+  fill (yellow);
 
   //chimney
   fill (teal);
@@ -60,4 +73,11 @@ void draw () {
   //ground
   strokeWeight(2.5);
   rect (-10, 390, 800, 800);
+  
+  //circle test
+  //y++;
+  if (y > 650) {
+    y = -50;
+  }
+  //circle (100, y, 100);
 }
