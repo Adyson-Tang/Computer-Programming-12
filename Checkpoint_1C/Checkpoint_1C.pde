@@ -35,8 +35,8 @@ void house (int x, int y, float s) {
   translate (x, y);
   while (numFlowers < maxFlowers) {
     pushMatrix();
-        translate (petalx, petaly);
     rotate(random(0, 2 * PI));
+    translate (petalx, petaly);
     petals = random (1, 3);
     while (petalr < 2 * PI) {
       petals(0, 0, petalr, petals, petalc);
@@ -89,7 +89,7 @@ void petals (float x, float y, float r, float s, float c) {
   scale (s);
   rotate(r);
   translate(x, y);
-  colorMode(HSB, 360, 90, 90);
+  colorMode(HSB, 360, 70, 80);
   fill (c, 100, 100);
   ellipse (0, 10, 7, 15);
   popMatrix();
