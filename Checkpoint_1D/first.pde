@@ -1,4 +1,6 @@
 void first() {
+  int x = 0;
+  int y = 0;
   while (x < width) {
     if (x == width - 5) {
       x = -5;

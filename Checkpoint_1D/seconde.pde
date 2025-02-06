@@ -1,21 +1,34 @@
 void seconde() {
-  background (#9ECE25);
-  quilt(100, 100, 5, 8);
+  background (#F0CC9D);
+  int x = 40;
+  int y = 40;
+  while (y < height) {
+    x = 40;
+    while (x < width) {
+      quilt(x, y, 5, 6);
+      x = x + 70;
+    }
+    y = y + 70;
+  }
 }
 
 void quilt (int x, int y, int centerS, int colouredS) {
   pushMatrix ();
-  translate (100, 100);
+  translate (x, y);
   float r = 0;
-  int rndmC = color(random(0, 255), random(80, 100), random(80, 100));
-  int rndmCo = color(random(0, 255), random(80, 100), random(80, 100));
+  int re = 150;
+  int b = int(random (50, 200));
+  int g =  int(random (50, 200));
+  int rndmC = color(random(0, 255), random(g - 50, g), random(b - 30, b));
+  int rndmCo = color(random(0, 255), random(g - 50, g), random(b - 30, b));
   int i = 0;
-  int cc = 0;
+  int cc = 2;
   while (i < 5) {
     pushMatrix();
+    rndmCo = color(random(0, 255), random(g - 50, g), random(b - 30, b));
     while (r < 2 * PI) {
       rotate (r);
-      colouredCircle (i, #01458B, colouredS+cc);
+      colouredCircle (i, rndmCo, colouredS+cc);
       r = r + PI/2;
     }
     popMatrix();
@@ -27,7 +40,7 @@ void quilt (int x, int y, int centerS, int colouredS) {
   pushMatrix();
   while (r < 2 * PI) {
     rotate (r);
-    centerCircle (#25CE56, centerS);
+    centerCircle (rndmC, centerS);
     r = r + PI/2;
   }
   popMatrix();
@@ -36,22 +49,23 @@ void quilt (int x, int y, int centerS, int colouredS) {
 
 void colouredCircle (int i, color c, int x) {
   fill (c);
-  stroke (c);
-  circle (x, x - 4, 5);
-  circle (x - 4, x, 5);
+  stroke (#1C0200);
+  circle (x, x - 4, 6);
+  circle (x - 4, x, 6);
   float add = 0;
   if (i > 0) {
-    add = (2 * x)/(i + 2);
+    add = (2 * x)/(i + 1);
   }
+  float d = (2 * x)/(i + 1);
   while (i > 0) {
-    circle (x, add, 5);
-    add = add - add;
+    circle (x, add, 6);
+    add = add - d;
     i--;
   }
 }
 
 void centerCircle (color c, int x) {
   fill (c);
-  stroke (c);
-  circle (x, 0, 5);
+  stroke (#1C0200);
+  circle (x, 0, 6);
 }

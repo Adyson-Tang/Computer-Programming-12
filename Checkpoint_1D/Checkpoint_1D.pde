@@ -4,12 +4,11 @@ final int INTRO = 0;
 final int FIRST = 1;
 final int SECOND = 2;
 final int THIRD = 3;
-int x = 0;
-  int y = 0;
 
 
 void setup() {
   size (500, 500);
+  //seconde();
   
 }
 
