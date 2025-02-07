@@ -16,16 +16,17 @@ void quilt (int x, int y, int centerS, int colouredS) {
   pushMatrix ();
   translate (x, y);
   float r = 0;
-  int re = 200;
-  int b = int(random (30, 250));
-  int g =  int(random (80, 170));
-  int rndmC = color(random(re - 50, re), random(g - 50, g), random(b - 30, b));
-  int rndmCo = color(random(re -50, re), random(g - 50, g), random(b - 30, b));
+  colorMode(HSB, 255, 100, 100);
+  int Hue = int(random (280, 350));
+  int Saturation = int(random (80, 110));
+  int Brightness =  int(random (70, 90));
+  int rndmC = color(random(Hue - 50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
+  int rndmCo = color(random(Hue -50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
   int i = 0;
   int cc = 2;
   while (i < 5) {
     pushMatrix();
-    rndmCo = color(random(re - 50, re), random(g - 50, g), random(b - 30, b));
+    rndmCo = color(random(Hue - 50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
     while (r < 2 * PI) {
       rotate (r);
       colouredCircle (i, rndmCo, colouredS+cc);
