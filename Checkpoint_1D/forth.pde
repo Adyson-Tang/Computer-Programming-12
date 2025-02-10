@@ -1,9 +1,25 @@
-void quiltrose (int x, int y, int centerS, int colouredS) {
+void forth() {
+  if (yfourth < 60) {
+    background (#F0CC9D);
+  }
+  while (yfourth < height) {
+    xfourth = 50;
+    while (xfourth < width) {
+      tiles(xfourth, yfourth, 6, 6);
+      xfourth = xfourth + 70;
+    }
+    yfourth = yfourth + 70;
+  }
+  buttonRight();
+  buttonLeft();
+}
+
+void tiles (int x, int y, int centerS, int colouredS) {
   pushMatrix ();
   translate (x, y);
   float r = 0;
-  colorMode(HSB, 255, 100, 100);
-  int Hue = int(random (280, 350));
+  colorMode(HSB, 360, 100, 100);
+  int Hue = int(random (370, 400));
   int Saturation = int(random (80, 110));
   int Brightness =  int(random (70, 90));
   int rndmC = color(random(Hue - 50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
@@ -15,7 +31,7 @@ void quiltrose (int x, int y, int centerS, int colouredS) {
     rndmCo = color(random(Hue - 50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
     while (r < 2 * PI) {
       rotate (r);
-      colouredCircle (i, rndmCo, colouredS+cc);
+      tilesCircle (i, rndmCo, colouredS+cc);
       r = r + PI/2;
     }
     popMatrix();
@@ -27,9 +43,32 @@ void quiltrose (int x, int y, int centerS, int colouredS) {
   pushMatrix();
   while (r < 2 * PI) {
     rotate (r);
-    centerCircle (rndmC, centerS);
+    tilesCenterCircle (rndmC, centerS);
     r = r + PI/2;
   }
   popMatrix();
   popMatrix();
+}
+
+void tilesCircle (int i, color c, int x) {
+  fill (c);
+  stroke (#1C0200);
+  circle (x, x - 4, 6);
+  circle (x - 4, x, 6);
+  float add = 0;
+  float d = (2 * x)/(i + 1);
+  if (i > 0) {
+    add = x - d;
+  }
+  while (i > 0) {
+    circle (x, add, 6);
+    add = add - d;
+    i--;
+  }
+}
+
+void tilesCenterCircle (color c, int x) {
+  fill (c);
+  stroke (#1C0200);
+  circle (x, 0, 6);
 }

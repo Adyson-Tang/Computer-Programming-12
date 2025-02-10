@@ -10,6 +10,8 @@ void seconde() {
     }
     ysecond = ysecond + 100;
   }
+  buttonRight();
+  buttonLeft();
 }
 
 void quilt (int x, int y, int centerS, int colouredS) {

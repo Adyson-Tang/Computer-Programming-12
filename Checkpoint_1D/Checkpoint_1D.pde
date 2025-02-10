@@ -4,9 +4,15 @@ final int INTRO = 0;
 final int FIRST = 1;
 final int SECOND = 2;
 final int THIRD = 3;
+final int FOURTH = 4;
 
 int xsecond = 50;
 int ysecond = 50;
+int xfourth = 50;
+int yfourth = 50;
+
+int xthird = width;
+ int ythird = 0;
 
 
 void setup() {
@@ -25,7 +31,9 @@ void draw () {
     seconde();
   } else if (mode == THIRD) {
     third();
-  } else {
+  } else if (mode == FOURTH) {
+    forth();
+  }  else {
     println ("error");
   }
 }

@@ -16,6 +16,8 @@ void first() {
       break;
     }
   }
+  buttonRight();
+  buttonLeft();
 }
 
 void pixel(int x, int y, color c) {
