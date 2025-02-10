@@ -1,14 +1,14 @@
 void seconde() {
-  background (#F0CC9D);
-  int x = 40;
-  int y = 40;
-  while (y < height) {
-    x = 40;
-    while (x < width) {
-      quilt(x, y, 5, 6);
-      x = x + 70;
+  if (ysecond < 60) {
+    background (#F0CC9D);
+  }
+  while (ysecond < height) {
+    xsecond = 50;
+    while (xsecond < width) {
+      quilt(xsecond, ysecond, 9, 13);
+      xsecond = xsecond + 100;
     }
-    y = y + 70;
+    ysecond = ysecond + 100;
   }
 }
 
@@ -16,24 +16,43 @@ void quilt (int x, int y, int centerS, int colouredS) {
   pushMatrix ();
   translate (x, y);
   float r = 0;
-  colorMode(HSB, 255, 100, 100);
-  int Hue = int(random (280, 350));
-  int Saturation = int(random (80, 110));
-  int Brightness =  int(random (70, 90));
-  int rndmC = color(random(Hue - 50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
-  int rndmCo = color(random(Hue -50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
+  colorMode(HSB, 360, 100, 100);
+  int Hue = int(random (140, 285));
+  int Saturation = 50;
+  int Brightness = 68;
+  //int e = 0;
+  //int edecider = int (random (-1, 2));
+  //if (edecider > 0) {
+  //    e = 30;
+  //  } else {
+  //    e = 0;
+  //  }
+  int rndmC = color(Hue, Saturation, Brightness);
+  int rndmCo =  color(Hue, Saturation, Brightness);
   int i = 0;
   int cc = 2;
-  while (i < 5) {
+  int addh = int (random(-10, 10));
+  int addb = int (random(-10, 10));
+  while (i < 3) {
+    //edecider = int (random (-1, 2));
+    //if (edecider > 0) {
+    //  e = 30;
+    //  //edecider = int (random (-1, 1));
+    //} else {
+    //  e = 0;
+    //}
     pushMatrix();
-    rndmCo = color(random(Hue - 50, Hue), random(Brightness - 50, Brightness), random(Saturation - 30, Saturation));
+    addh = int (random(-25, 25));
+    addb = int (random(-20, 20));
+    //Hue = int(random (0, 360));
+    rndmCo = color(Hue + addh, Saturation, Brightness + addb);
     while (r < 2 * PI) {
       rotate (r);
       colouredCircle (i, rndmCo, colouredS+cc);
       r = r + PI/2;
     }
     popMatrix();
-    cc = cc + 5;
+    cc = cc + 8;
     i++;
     r = 0;
   }
@@ -51,15 +70,15 @@ void quilt (int x, int y, int centerS, int colouredS) {
 void colouredCircle (int i, color c, int x) {
   fill (c);
   stroke (#1C0200);
-  circle (x, x - 4, 6);
-  circle (x - 4, x, 6);
+  circle (x, x - 8, 10);
+  circle (x - 8, x, 10);
   float add = 0;
-  if (i > 0) {
-    add = (2 * x)/(i + 1);
-  }
   float d = (2 * x)/(i + 1);
+  if (i > 0) {
+    add = x - d;
+  }
   while (i > 0) {
-    circle (x, add, 6);
+    circle (x, add, 9);
     add = add - d;
     i--;
   }
@@ -68,5 +87,5 @@ void colouredCircle (int i, color c, int x) {
 void centerCircle (color c, int x) {
   fill (c);
   stroke (#1C0200);
-  circle (x, 0, 6);
+  circle (x, 0, 10);
 }

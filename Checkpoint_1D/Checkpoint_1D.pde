@@ -5,8 +5,12 @@ final int FIRST = 1;
 final int SECOND = 2;
 final int THIRD = 3;
 
+int xsecond = 50;
+int ysecond = 50;
+
 
 void setup() {
+  colorMode(HSB, 360, 100, 100);
   size (500, 500);
   //seconde();
   

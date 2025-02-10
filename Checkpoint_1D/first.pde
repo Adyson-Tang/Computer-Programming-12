@@ -1,6 +1,7 @@
 void first() {
   int x = 0;
   int y = 0;
+  colorMode (RGB, 255, 255, 255);
   while (x < width) {
     if (x == width - 5) {
       x = -5;
