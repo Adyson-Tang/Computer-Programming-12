@@ -3,7 +3,7 @@ void third () {
   if (xthird <= width) {
 
     grid(xthird);
-    xthird = xthird + 7;
+    xthird = xthird + 5;
   }
   if (xthird >= width) xthird = 0;
   //biggerTri(100, 200);
@@ -15,6 +15,8 @@ void third () {
   //     x = x +
   //  }
   //}
+  buttonLeft();
+  buttonRight();
 }
 void grid (int x) {
   pushMatrix();

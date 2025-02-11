@@ -12,7 +12,7 @@ int xfourth = 50;
 int yfourth = 50;
 
 int xthird = width;
- int ythird = 0;
+int ythird = 0;
 
 
 void setup() {
