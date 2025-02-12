@@ -1,5 +1,5 @@
-void buttonInteract () {
-  if (dist (mouseX, mouseY, 450, 250) <= 50 && mode < 4 && mode != 0) {
+void buttonInteract (int x, int y, int s, int m) {
+  if (dist (mouseX, mouseY, x, y) <= s && mode == m) {
     mode++;
   }
 }
@@ -8,10 +8,9 @@ void buttonInteract () {
 void button (int x, int y, int s) {
   fill (#FFFFFF);
   stroke (#FFFFFF);
-  circle (x, y, s);
-  if (dist (mouseX, mouseY, x, y) <= s) {
-    strokeWeight(3);
+  strokeWeight(10);
+  if (dist (mouseX, mouseY, x, y) <= s/2) {
+    strokeWeight(5);
   }
-  strokeWeight(1);
-  stroke (#000000);
+  circle (x, y, s);
 }

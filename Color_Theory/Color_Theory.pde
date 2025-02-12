@@ -23,13 +23,20 @@ color pink = #C61C80;
 String[] words = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "PINK"};
 color [] colors = {red, orange, yellow, green, blue, purple, pink};
 
+int randomWord = int (random (0, 6));
+int randomColor = int (random (0, 6));
+
+float rotateWord = 0;
+float scaleWord = 0.5;
+
+
 void setup() {
   size (500, 500);
   font = loadFont ("Silkscreen-100.vlw");
 }
 
 void draw() {
-   if (mode == INTRO) {
+  if (mode == INTRO) {
     intro ();
   } else if (mode == GAME) {
     game ();
