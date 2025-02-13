@@ -29,6 +29,15 @@ int randomColor = int (random (0, 6));
 float rotateWord = 0;
 float scaleWord = 0.5;
 
+//boolean matches
+boolean notAMatchb = false;
+boolean Matchb = false;
+boolean first = true;
+
+float fiftyfifty = random(0, 1);
+int points = 0;
+int totalPoints = 0;
+
 
 void setup() {
   size (500, 500);

@@ -14,14 +14,78 @@ void game() {
 
   if (scaleWord < 2.2) {
     theWord(colors [randomColor], words [randomWord], rotateWord, scaleWord);
-    scaleWord = scaleWord + 0.01;
-    rotateWord = rotateWord + 0.08;
-  } else {
+    scaleWord = scaleWord + 0.02;
+    rotateWord = rotateWord + 0.09;
+  }
+
+  if (scaleWord >= 2.2) {
+    fiftyfifty = random(0, 1);
     randomWord = int (random (0, 6));
-    randomColor = int (random (0, 6));
+
+    if (fiftyfifty >= 0.5) {
+      randomColor = randomWord;
+    } else {
+      randomColor = int(random (0, 6));
+      while (randomColor == randomWord) {
+        randomColor = int(random (0, 6));
+      }
+    }
 
     rotateWord = 0;
     scaleWord = 0.5;
+    first = true;
+    totalPoints++;
+  }
+
+  if (notAMatchb) {
+    if (randomColor != randomWord) {
+      points++;
+    }
+    totalPoints++;
+    fiftyfifty = random(0, 1);
+    randomWord = int (random (0, 6));
+
+    if (fiftyfifty >= 0.5) {
+      randomColor = randomWord;
+    } else {
+      randomColor = int(random (0, 6));
+      while (randomColor == randomWord) {
+        randomColor = int(random (0, 6));
+      }
+    }
+
+
+    rotateWord = 0;
+    scaleWord = 0.5;
+    first = true;
+    notAMatchb = false;
+  }
+
+  if (Matchb) {
+    if (randomColor == randomWord) {
+      points++;
+    }
+    totalPoints++;
+    fiftyfifty = random(0, 1);
+    randomWord = int (random (0, 6));
+
+    if (fiftyfifty >= 0.5) {
+      randomColor = randomWord;
+    } else {
+      randomColor = int(random (0, 6));
+      while (randomColor == randomWord) {
+        randomColor = int(random (0, 6));
+      }
+    }
+
+    rotateWord = 0;
+    scaleWord = 0.5;
+    first = true;
+    Matchb = false;
+  }
+  text ("" + points + "/" + totalPoints, 100, 100);
+  if (totalPoints >= 20) {
+    mode = GAMEOVER;
   }
 }
 
@@ -34,4 +98,23 @@ void theWord (color c, String w, float r, float s) {
   fill (c);
   text (w, 0, 0);
   popMatrix();
+}
+
+void regen () {
+  fiftyfifty = random(0, 1);
+    randomWord = int (random (0, 6));
+
+    if (fiftyfifty >= 0.5) {
+      randomColor = randomWord;
+    } else {
+      randomColor = int(random (0, 6));
+      while (randomColor == randomWord) {
+        randomColor = int(random (0, 6));
+      }
+    }
+
+    rotateWord = 0;
+    scaleWord = 0.5;
+    first = true;
+    totalPoints++;
 }
