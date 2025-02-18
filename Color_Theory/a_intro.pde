@@ -1,5 +1,6 @@
 void intro() {
   //textMode(CENTER);
+  music.play();
   background (#000000);
   textFont (font, 70);
   text("Color", width - 240, height/2 - 30);

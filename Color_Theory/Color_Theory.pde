@@ -1,3 +1,15 @@
+
+//SOUND IMPORTS
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+Minim minim;
+AudioPlayer success, failure, music;
+
 int mode;
 final int INTRO = 0;
 final int GAME = 1;
@@ -10,6 +22,8 @@ PFont font;
 
 
 //colors
+color white = #FFFFFF;
+
 color red = #E00707;
 color orange = #E06907;
 color yellow = #F2DC14;
@@ -42,6 +56,10 @@ int totalPoints = 0;
 void setup() {
   size (500, 500);
   font = loadFont ("Silkscreen-100.vlw");
+  minim = new Minim(this);
+  failure = minim.loadFile ("failure.wav");
+  success = minim.loadFile ("success.wav");
+  music = minim.loadFile ("music.mp3");
 }
 
 void draw() {
