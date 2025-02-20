@@ -1,5 +1,6 @@
 void mouseReleased () {
   introbutton();
+  gameoverbutton();
   if (mouseX > width/2 && mouseX < width && mouseY < height && mouseY > 0 && first == true && mode == GAME) {
    notAMatchb = true;
  }
