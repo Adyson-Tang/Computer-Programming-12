@@ -44,13 +44,21 @@ float rotateWord = 0;
 float scaleWord = 0.5;
 
 //boolean matches
-boolean notAMatchb = false;
+boolean noMatchb = false;
 boolean Matchb = false;
 boolean first = true;
 
 float fiftyfifty = random(0, 1);
 int points = 0;
 int totalPoints = 0;
+int highscore = 0;
+
+int randomButtonXMatch = int(random(0, width));
+int randomButtonYMatch = int(random (0, height));
+int randomButtonXnoMatch = int(random(0, width));
+int randomButtonYnoMatch = int(random (0, height));
+
+String script = "GAMEOVER";
 
 
 void setup() {
@@ -60,6 +68,20 @@ void setup() {
   failure = minim.loadFile ("failure.wav");
   success = minim.loadFile ("success.wav");
   music = minim.loadFile ("music.mp3");
+  randomButtonXMatch = int(random(100, width-100));
+  randomButtonYMatch = int(random (100, height-100));
+  //while (Math.max(randomButtonXMatch, width/2) - Math.min(randomButtonXMatch, width/2) >= 200 && Math.max(randomButtonYMatch, height/2) - Math.min(randomButtonYMatch, height/2) >= 200) {
+  //  randomButtonXMatch = int(random(0, width));
+  //  randomButtonYMatch = int(random (0, height));
+  //}
+  randomButtonXnoMatch = int(random(100, width-100));
+  randomButtonYnoMatch = int(random (100, height-100));
+  while (dist(randomButtonXMatch, randomButtonYMatch, randomButtonXnoMatch, randomButtonYnoMatch) <= 100) {
+    randomButtonXMatch = int(random(100, width-100));
+    randomButtonYMatch = int(random (100, height-100));
+    randomButtonXnoMatch = int(random(100, width-100));
+    randomButtonYnoMatch = int(random (100, height-100));
+  }
 }
 
 void draw() {

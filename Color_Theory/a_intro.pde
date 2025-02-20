@@ -11,5 +11,5 @@ void intro() {
 }
 
 void introbutton() {
-  buttonInteract(400, 400, 55, 0);
+  buttonInteract(400, 400, 55, 0, 1);
 }

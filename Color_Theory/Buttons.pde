@@ -1,12 +1,7 @@
-void buttonInteract (int x, int y, int s, int m) {
+void buttonInteract (int x, int y, int s, int m, int nm) {
   if (dist (mouseX, mouseY, x, y) <= s && mode == m) {
-    points = -1;
-    totalPoints = -1;
-    mode++;
-  }
-  if (mode > 2) {
-   mode = 0; 
-   println(10);
+    points = 0;
+    mode = nm;
   }
 }
 
@@ -18,9 +13,9 @@ void button (int x, int y, int s) {
   rectMode (CENTER);
   if (dist (mouseX, mouseY, x, y) <= s/2) {
     strokeWeight(5);
-    rect (x, y, 50, 50, 20);
+    rect (x, y, s, s, 20);
   } else {
-  rect (x, y, 50, 50, 10);
+  rect (x, y, s, s, 10);
   }
   rectMode (CORNER);
   //circle (x, y, s);
