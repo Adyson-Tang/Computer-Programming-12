@@ -39,6 +39,8 @@ color [] colors = {red, orange, yellow, green, blue, purple, pink};
 
 int randomWord = int (random (0, 6));
 int randomColor = int (random (0, 6));
+PImage [] gif;
+double gifSetter = 1;
 
 float rotateWord = 0;
 float scaleWord = 0.5;
@@ -81,6 +83,14 @@ void setup() {
     randomButtonYMatch = int(random (100, height-100));
     randomButtonXnoMatch = int(random(100, width-100));
     randomButtonYnoMatch = int(random (100, height-100));
+  }
+  //gif
+  gif = new PImage [19];
+  int stargifCounter = 1;
+  while (stargifCounter < 19) {
+    gif[stargifCounter] = loadImage("frame" + stargifCounter + ".png");
+    gif[stargifCounter].resize(width/3, width/3);
+    stargifCounter++;
   }
 }
 
