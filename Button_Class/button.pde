@@ -10,6 +10,9 @@ class Button {
     y = height/2;
     w = 50;
     h = 50;
+    highlight = #5FE56D;
+    normal = #210FA0;
+    t = "'yo?";
   }
 
   Button (String _t, int _x, int _y, int _w, int _h, color ch, color cn) {
@@ -21,7 +24,7 @@ class Button {
     highlight = ch;
     normal = cn;
   }
-  void showhighlight () {
+  void show () {
     rectMode (CENTER);
     textAlign(CENTER, CENTER);
     fill(normal);
@@ -31,7 +34,7 @@ class Button {
     fill(highlight);
     textSize(w/4);
     text (t, x, y);
-    clicked = false;
+    click();
   }
   void act () {
     rectMode (CENTER);
@@ -51,5 +54,10 @@ class Button {
     }
     textSize(w/4);
     text (t, x, y);
+    if (mouseReleased && mouseX > x-w/2 && mouseX < x +(w/2) && mouseY > y-(h/2) && mouseY < y+(h/2)){
+      clicked = true;
+    } else {
+      clicked = false;
+    }
   }
 }
