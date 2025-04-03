@@ -1,4 +1,10 @@
 //asteroids
+//mode
+int mode;
+final int INTRO = 0;
+final int GAME = 1;
+final int PAUSE = 2;
+final int GAMEOVER = 3;
 
 //PVector location;
 //PVector velocity;
@@ -11,6 +17,9 @@ float d;
 
 color black = #000000;
 color white = #FFFFFF;
+
+boolean mouseReleased;
+boolean wasPressed;
 
 Spaceship player1;
 void setup () {
@@ -31,5 +40,13 @@ void setup () {
 }
 
 void draw() {
-  game();
+  if (mode == INTRO) {
+    intro ();
+  } else if (mode == GAME) {
+    game ();
+  } else if (mode == GAMEOVER) {
+    gameover();
+  } else if (mode == PAUSE) {
+    pause();
+  }
 }

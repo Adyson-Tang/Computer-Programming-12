@@ -2,6 +2,8 @@ class Spaceship {
   //variables
   PVector location, velocity, direction;
   int lives;
+  int maxposvel;
+  int maxnegvel;
 
   //constructor
   Spaceship() {
@@ -9,6 +11,8 @@ class Spaceship {
     velocity = new PVector(0, 0);
     direction = new PVector(0.2, 0);
     lives = 3;
+    maxposvel = 5;
+    maxnegvel = -5;
   }
 
   void show() {
@@ -35,18 +39,17 @@ class Spaceship {
 
   void move() {
     location.add(velocity);
-    if (upkey) {
+    if (upkey && (velocity.x <= maxposvel && velocity.y <= maxposvel && velocity.x >= maxnegvel && velocity.y >= maxnegvel)) {
       velocity.add(direction);
+      //println("why");
     }
-    if (velocity.x > 0 && !upkey) {
-      velocity.add(-direction.x, 0);
-    } 
-    if (velocity.y > 0 && !upkey) {
-      velocity.add(0, -direction.y); 
-    }
+      if (velocity.x > maxposvel)  velocity.x = maxposvel;
+      if (velocity.y > maxposvel)  velocity.y = maxposvel;
+      if (velocity.x < maxnegvel)  velocity.x = maxnegvel;
+      if (velocity.y < maxnegvel)  velocity.y = maxnegvel;
     if (leftkey) direction.rotate(-radians(3));
     if (rightkey) direction.rotate(radians(3));
-    
+
     keepOnScreen();
   }
 
@@ -58,11 +61,11 @@ class Spaceship {
 
   void keepOnScreen() {
     if (location.x > width) location.x = 0;
-    
+
     if (location.x < 0) location.x = width;
-    
+
     if (location.y > height) location.y = 0;
-    
+
     if (location.y < 0) location.y = height;
   }
 }
