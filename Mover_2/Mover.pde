@@ -19,10 +19,13 @@ class Mover {
       i++;
     }
   }
+  void removeCircle() {
+   numOfMovers--; 
+  }
   void update() {
     x = x + vx;
     y = y + vy;
-    if (x > width - d/2 || x <  d/2 || y > height - d/2 || y < d/2) {
+    if (x > width || x < 0 || y > height || y < 0) {
       vx = -vx;
       vy = -vy;;
     }
@@ -31,10 +34,10 @@ class Mover {
     int i = 0;
     while (i < numOfMovers) {
       float dist = dist(x, y, myCircles[i].x, myCircles[i].y);
-      if (dist <= 130) {
-        float a = map (dist, 0, 200, 255, 0);
+      if (dist <= 200) {
+        float a = map (dist, 0, 100, 255, 0);
         stroke(255, a);
-        strokeWeight(2);
+        strokeWeight(1);
         line(x, y, myCircles[i].x, myCircles[i].y);
       }
       i++;

@@ -1,5 +1,5 @@
 Mover [] myCircles;
-  int n = 30;
+  int n = 50;
 void setup() {
   size(400, 400);
   myCircles = new Mover [n];
@@ -20,4 +20,11 @@ void draw() {
     myCircles[i].showLine();
     i++;
   }
+}
+
+void mouseReleased () {
+  int i = 0;
+  n--;
+  myCircles[i].removeCircle();
+    
 }
