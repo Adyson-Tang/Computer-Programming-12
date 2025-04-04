@@ -14,4 +14,11 @@ void keyReleased() {
   if (keyCode == ENTER && mode == INTRO) {
    mode = GAME; 
   }
+  
+  if (key == ' ' && mode == GAME) {
+    mode = 2;
+    println("hello");
+  } else if (key == ' ') {
+    mode = 1;
+  }
 }
