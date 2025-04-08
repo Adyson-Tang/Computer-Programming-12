@@ -3,6 +3,7 @@ void keyPressed() {
   if (keyCode == DOWN) downkey = true;
   if (keyCode == LEFT) leftkey = true;
   if (keyCode == RIGHT) rightkey = true;
+  if (key == ' ' && mode == GAME) spacekey = true;
 }
 
 void keyReleased() {
@@ -15,10 +16,6 @@ void keyReleased() {
    mode = GAME; 
   }
   
-  if (key == ' ' && mode == GAME) {
-    mode = 2;
-    println("hello");
-  } else if (key == ' ') {
-    mode = 1;
-  }
+  if (key == ' ' && mode == GAME) spacekey = false;
+  
 }

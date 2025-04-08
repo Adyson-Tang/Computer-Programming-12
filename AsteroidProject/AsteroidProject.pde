@@ -12,7 +12,7 @@ int glitch = 0;
 //PVector gravity;
 
 //keyboard booleans
-boolean upkey, downkey, leftkey, rightkey = false;
+boolean upkey, downkey, leftkey, rightkey, spacekey = false;
 
 float d;
 
@@ -23,6 +23,8 @@ boolean mouseReleased;
 boolean wasPressed;
 
 PFont font1, font2;
+
+ArrayList<GameObject> objects;
 
 Spaceship player1;
 void setup () {
@@ -40,7 +42,17 @@ void setup () {
   //vy = random(-5, 5);
   d = 20;
   
+  objects = new ArrayList();
   player1 = new Spaceship();
+  objects.add(player1);
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
 }
 
 void draw() {

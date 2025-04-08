@@ -20,18 +20,13 @@ void intro() {
 void glitcheffect(float go) {
   int w2 = width/2;
   int h2 = height/2;
-  int add = int (random (-200, 200));
-  int add1 = int (random (-200, 200));
-  int add2 = int (random (-200, 200));
-  int add3 = int (random (-200, 200));
-  int add4 = int (random (-200, 200));
-  int add5 = int (random (-200, 200));
+  int add, add1, add2, add3, add4, add5;
   if (go > 100) {
 
     //textFont(font2);
     for (int n = 0; n< random(10, 18); n++) {
       textSize(random(20, 100));
-      text("START",width/2, height/2);
+      text("START",width/2 + random(-10, 10), height/2 + random (-10, 10));
       colorMode(HSB, 100, 100, 100);
       fill(color(random(0, 100), random(95, 100), random (95, 100)));
       add = int(random (-200, 100));

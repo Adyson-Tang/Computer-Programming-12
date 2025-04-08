@@ -1,18 +1,16 @@
-class Spaceship {
+class Spaceship extends GameObject {
   //variables
-  PVector location, velocity, direction;
-  int lives;
-  int maxposvel;
-  int maxnegvel;
+  //PVector location, velocity, 
+  PVector direction;
+  int cooldown;
 
   //constructor
   Spaceship() {
-    location = new PVector(width/2, height/2);
-    velocity = new PVector(0, 0);
+    super(width/2, height/2, 0, 0);
+
     direction = new PVector(0.2, 0);
-    lives = 3;
-    maxposvel = 5;
-    maxnegvel = -5;
+    
+    cooldown = 0;
   }
 
   void show() {
@@ -35,25 +33,30 @@ class Spaceship {
     move();
     shoot();
     collisionCheck();
+    wrapAround();
   }
 
   void move() {
     location.add(velocity);
-    if (upkey && (velocity.x <= maxposvel && velocity.y <= maxposvel && velocity.x >= maxnegvel && velocity.y >= maxnegvel)) {
+    if (upkey) {
       velocity.add(direction);
       //println("why");
     }
-      if (velocity.x > maxposvel)  velocity.x = maxposvel;
-      if (velocity.y > maxposvel)  velocity.y = maxposvel;
-      if (velocity.x < maxnegvel)  velocity.x = maxnegvel;
-      if (velocity.y < maxnegvel)  velocity.y = maxnegvel;
     if (leftkey) direction.rotate(-radians(3));
     if (rightkey) direction.rotate(radians(3));
 
-    keepOnScreen();
+    //keepOnScreen();
+    
+    velocity.limit(10);
   }
 
   void shoot() {
+    cooldown--;
+    if (spacekey && cooldown <= 0) {
+      objects.add(new Bullet());
+      cooldown = 20;
+  }
+    
   }
 
   void collisionCheck() {
