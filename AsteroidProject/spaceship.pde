@@ -1,6 +1,6 @@
 class Spaceship extends GameObject {
   //variables
-  //PVector location, velocity, 
+  //PVector location, velocity,
   PVector direction;
   int cooldown;
 
@@ -9,7 +9,7 @@ class Spaceship extends GameObject {
     super(width/2, height/2, 0, 0);
 
     direction = new PVector(0.2, 0);
-    
+
     cooldown = 0;
   }
 
@@ -46,7 +46,7 @@ class Spaceship extends GameObject {
     if (rightkey) direction.rotate(radians(3));
 
     //keepOnScreen();
-    
+
     velocity.limit(10);
   }
 
@@ -55,8 +55,7 @@ class Spaceship extends GameObject {
     if (spacekey && cooldown <= 0) {
       objects.add(new Bullet());
       cooldown = 20;
-  }
-    
+    }
   }
 
   void collisionCheck() {

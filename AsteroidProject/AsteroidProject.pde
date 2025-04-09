@@ -1,4 +1,6 @@
 //asteroids
+
+import java.util.ArrayList;
 //mode
 int mode;
 final int INTRO = 0;

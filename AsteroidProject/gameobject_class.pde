@@ -2,6 +2,7 @@ class GameObject {
 
   PVector location, velocity;
   int lives;
+  float diameter;
 
   GameObject(float locx, float locy, float velx, float vely) {
     location = new PVector(locx, locy);
@@ -12,14 +13,14 @@ class GameObject {
   GameObject(PVector loc, PVector vel) {
     location = loc;
     velocity = vel;
-    velocity.setMag(10);
+    //velocity.setMag(10);
     lives = 1;
   }
   
   GameObject(PVector loc, PVector vel, int lv) {
     location = loc;
     velocity = vel;
-    velocity.setMag(10);
+    //velocity.setMag(10);
     lives = lv;
   }
 
