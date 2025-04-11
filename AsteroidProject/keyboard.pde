@@ -12,8 +12,15 @@ void keyReleased() {
   if (keyCode == LEFT) leftkey = false;
   if (keyCode == RIGHT) rightkey = false;
   
-  if (keyCode == ENTER && mode == INTRO) {
-   mode = GAME; 
+  //if (keyCode == ENTER && mode == INTRO) {
+  // mode = GAME; 
+  //}
+  
+  if (keyCode == ENTER) {
+   mode++; 
+  }
+  if (mode == 5) {
+   mode = 0; 
   }
   
   if (key == ' ' && mode == GAME) spacekey = false;
