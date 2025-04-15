@@ -27,8 +27,12 @@ class Bullet extends GameObject {
     timer--;
     if (timer <= 0) {
       lives = 0;
+      dead = true;
       println("Tuysfg");
     }
+  }
+  void death () {
+   if (lives == 0) dead = true; 
   }
   
   

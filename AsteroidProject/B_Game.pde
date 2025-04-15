@@ -6,7 +6,8 @@ void game () {
     GameObject currentObject = objects.get(i);
     currentObject.act();
     currentObject.show();
-    if (currentObject.lives == 0) 
+    currentObject.death();
+    if (currentObject.lives == 0 && currentObject.dead) 
       objects.remove(i);
      else 
       i++; 

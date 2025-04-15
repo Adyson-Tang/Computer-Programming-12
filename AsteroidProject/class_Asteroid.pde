@@ -7,6 +7,7 @@ class Asteroid extends GameObject {
     velocity.rotate(random(TWO_PI));
     lives = 3;
     diameter = lives*30;
+    dead = false;
   }
 
   Asteroid(float x, float y, int lives) {
@@ -15,19 +16,20 @@ class Asteroid extends GameObject {
     velocity.rotate(random(TWO_PI));
     this.lives = lives;
     diameter = lives*30;
+    dead = false;
   }
 
   void show() {
     fill(black);
     stroke(white);
-    strokeWeight(3);
+    strokeWeight(1);
     circle(location.x, location.y, diameter);
+    line(location.x, location.y, location.x + diameter/2, location.y);
     if (lives < 3 && glitchlength > 0) {
       println("iosfhe");
       glitcheffecta(120, location.x, location.y);
       glitchlength--;
     }  //maybe put in bullet class instead
-    line(location.x, location.y, location.x + diameter/2, location.y);
   }
 
   void act() {
@@ -37,21 +39,22 @@ class Asteroid extends GameObject {
   }
 
   void death() {
+    if (glitchlength <= 0) dead = true;
   }
 
   void collisionCheck() {
     int i = 0;
     while (i < objects.size()) {
-      GameObject obj = objects.get(i);
-      if (obj instanceof Bullet) {
-        if (dist(location.x, location.y, obj.location.x, obj.location.y) < diameter/2 + obj.diameter/2 && lives > 0) {
+      GameObject objBullet = objects.get(i);
+      if (objBullet instanceof Bullet) {
+        if (dist(location.x, location.y, objBullet.location.x, objBullet.location.y) < diameter/2 + objBullet.diameter/2 && lives > 0) {
           //for (int e = 3; e > 0; e--) {
           //  glitcheffect(120, location.x, location.y);
           //}
           objects.add(new Asteroid(location.x, location.y, lives -1));
           objects.add(new Asteroid(location.x, location.y, lives -1));
           lives = 0;
-          obj.lives = 0;
+          objBullet.lives = 0;
           //println("iosfhe");
         }
         //} else if (dist(location.x, location.y, obj.location.x, obj.location.y) < diameter/2 + obj.diameter/2) {

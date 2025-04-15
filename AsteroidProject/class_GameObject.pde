@@ -3,6 +3,7 @@ class GameObject {
   PVector location, velocity;
   int lives;
   float diameter;
+  boolean dead = false;
 
   GameObject(float locx, float locy, float velx, float vely) {
     location = new PVector(locx, locy);
@@ -30,6 +31,10 @@ class GameObject {
 
   void show() {
     //show();
+  }
+  
+  void death() {
+     
   }
   
   void wrapAround() {

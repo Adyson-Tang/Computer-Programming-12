@@ -19,7 +19,7 @@ void keyReleased() {
   if (keyCode == ENTER) {
    mode++; 
   }
-  if (mode == 5) {
+  if (mode == 4) {
    mode = 0; 
   }
   

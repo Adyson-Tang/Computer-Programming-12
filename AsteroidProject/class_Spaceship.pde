@@ -11,6 +11,8 @@ class Spaceship extends GameObject {
     direction = new PVector(0.2, 0);
 
     cooldown = 0;
+    
+    lives = 3;
   }
 
   void show() {
@@ -59,6 +61,28 @@ class Spaceship extends GameObject {
   }
 
   void collisionCheck() {
+    int i = 0;
+    while (i < objects.size()) {
+      GameObject objAsteroid = objects.get(i);
+      if (objAsteroid instanceof Asteroid) {
+        if (dist(location.x, location.y, objAsteroid.location.x, objAsteroid.location.y) < diameter/2 + objAsteroid.diameter/2 && lives > 0) {
+          //for (int e = 3; e > 0; e--) {
+          //  glitcheffect(120, location.x, location.y);
+
+          lives--;
+          objAsteroid.lives = 0;
+          //println("iosfhe");
+        }
+      }
+      i++;
+    }
+  }
+  
+  void death() {
+   if (lives <= 0) {
+     dead = true;
+     mode = GAMEOVER;
+   }
   }
 
   void keepOnScreen() {
