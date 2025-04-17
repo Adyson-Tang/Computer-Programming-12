@@ -12,7 +12,9 @@ class Spaceship extends GameObject {
 
     cooldown = 0;
     
-    lives = 3;
+    lives = 5;
+    
+    diameter = 30;
   }
 
   void show() {
@@ -49,7 +51,7 @@ class Spaceship extends GameObject {
 
     //keepOnScreen();
 
-    velocity.limit(10);
+    velocity.limit(8);
   }
 
   void shoot() {
@@ -71,6 +73,7 @@ class Spaceship extends GameObject {
 
           lives--;
           objAsteroid.lives = 0;
+          objAsteroid.dead = true;
           //println("iosfhe");
         }
       }

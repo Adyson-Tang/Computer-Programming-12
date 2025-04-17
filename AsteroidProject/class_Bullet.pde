@@ -4,14 +4,21 @@ class Bullet extends GameObject {
   //PVector location;
   //PVector velocity;
   int timer;
+  boolean enemy = false;
 
   Bullet() {
     super(player1.location.copy(), player1.direction.copy(), 1);
     timer = 60;
     velocity.setMag(10);
     diameter = 5;
-    //lives = 1;
 
+  }
+  Bullet (boolean enemy) {
+    super(player1.location.copy(), player1.direction.copy(), 1);
+    timer = 60;
+    velocity.setMag(10);
+    diameter = 5;
+    this.enemy = enemy;
   }
 
   void show() {

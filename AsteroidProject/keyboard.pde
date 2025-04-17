@@ -17,7 +17,10 @@ void keyReleased() {
   //}
   
   if (keyCode == ENTER) {
-   mode++; 
+   if (mode == INTRO) mode = GAME;
+   else if (mode == GAME) mode = PAUSE;
+   else if (mode == PAUSE) mode = GAME;
+   else if (mode == GAMEOVER) mode = INTRO;
   }
   if (mode == 4) {
    mode = 0; 

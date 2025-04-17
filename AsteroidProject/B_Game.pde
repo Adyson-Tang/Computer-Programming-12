@@ -13,6 +13,10 @@ void game () {
       i++; 
     
   }
+  
+  fill(white);
+  textSize(50);
+  text(objects.get(0).lives, 30, 30);
   //for (int i = 0; i < objects.size(); i++) {
   //  GameObject currentObject = objects.get(i);
   //  currentObject.show();

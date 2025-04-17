@@ -38,12 +38,12 @@ class GameObject {
   }
   
   void wrapAround() {
-    if (location.x > width) location.x = 0;
+    if (location.x > width + diameter/2) location.x = 0;
 
-    if (location.x < 0) location.x = width;
+    if (location.x < 0- diameter/2) location.x = width;
 
-    if (location.y > height) location.y = 0;
+    if (location.y > height + diameter/2) location.y = 0;
 
-    if (location.y < 0) location.y = height;
+    if (location.y < 0 - diameter/2) location.y = height;
   }
 }

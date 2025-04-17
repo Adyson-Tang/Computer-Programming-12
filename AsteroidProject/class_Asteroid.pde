@@ -3,7 +3,7 @@ class Asteroid extends GameObject {
 
   Asteroid() {
     super(random(width), random(height), 1, 1);
-    velocity.setMag(random(1, 3));
+    velocity.setMag(random(0.5, 2));
     velocity.rotate(random(TWO_PI));
     lives = 3;
     diameter = lives*30;
@@ -12,7 +12,7 @@ class Asteroid extends GameObject {
 
   Asteroid(float x, float y, int lives) {
     super(x, y, 1, 1);
-    velocity.setMag(random(1, 3));
+    velocity.setMag(random(0.5, 2));
     velocity.rotate(random(TWO_PI));
     this.lives = lives;
     diameter = lives*30;
@@ -30,6 +30,7 @@ class Asteroid extends GameObject {
       glitcheffecta(120, location.x, location.y);
       glitchlength--;
     }  //maybe put in bullet class instead
+    //can put depending on lives the asteroid design here
   }
 
   void act() {
@@ -51,8 +52,12 @@ class Asteroid extends GameObject {
           //for (int e = 3; e > 0; e--) {
           //  glitcheffect(120, location.x, location.y);
           //}
+          //if (lives == 1) {
+          //  objects.add(new Asteroid()); //figure out how to limit the amout of asteroids on scrren yeah?
+          //} else {
           objects.add(new Asteroid(location.x, location.y, lives -1));
           objects.add(new Asteroid(location.x, location.y, lives -1));
+          //}
           lives = 0;
           objBullet.lives = 0;
           //println("iosfhe");
