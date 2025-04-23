@@ -29,6 +29,7 @@ PFont font1, font2;
 ArrayList<GameObject> objects;
 
 Spaceship player1;
+UFO theUFO;
 void setup () {
   size(800, 800);
   font1 = createFont("Roboto.ttf", 20);
@@ -46,15 +47,16 @@ void setup () {
   
   objects = new ArrayList();
   player1 = new Spaceship();
+  theUFO = new UFO();
+  objects.add(theUFO);
   objects.add(player1);
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
+  //objects.add(new Asteroid());
+  //objects.add(new Asteroid());
+  //objects.add(new Asteroid());
+  //objects.add(new Asteroid());
+  //objects.add(new Asteroid());
+  //objects.add(new Asteroid());
+  //objects.add(new Asteroid());
 }
 
 void draw() {

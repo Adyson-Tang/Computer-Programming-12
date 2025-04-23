@@ -14,7 +14,7 @@ class Bullet extends GameObject {
 
   }
   Bullet (boolean enemy) {
-    super(player1.location.copy(), player1.direction.copy(), 1);
+    super(theUFO.location.copy(), theUFO.direction.copy(), 1);
     timer = 60;
     velocity.setMag(10);
     diameter = 5;
@@ -35,7 +35,7 @@ class Bullet extends GameObject {
     if (timer <= 0) {
       lives = 0;
       dead = true;
-      println("Tuysfg");
+      //println("Tuysfg");
     }
   }
   void death () {

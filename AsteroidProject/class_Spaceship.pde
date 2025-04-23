@@ -8,7 +8,7 @@ class Spaceship extends GameObject {
   Spaceship() {
     super(width/2, height/2, 0, 0);
 
-    direction = new PVector(0.2, 0);
+    direction = new PVector(0.1, 0.0001);
 
     cooldown = 0;
     
@@ -43,15 +43,15 @@ class Spaceship extends GameObject {
   void move() {
     location.add(velocity);
     if (upkey) {
-      velocity.add(direction);
+      velocity.add(0.4*direction.x, 0.4*direction.y);
       //println("why");
     }
-    if (leftkey) direction.rotate(-radians(3));
-    if (rightkey) direction.rotate(radians(3));
+    if (leftkey) direction.rotate(-radians(4));
+    if (rightkey) direction.rotate(radians(4));
 
     //keepOnScreen();
 
-    velocity.limit(8);
+    velocity.limit(4);
   }
 
   void shoot() {
@@ -78,6 +78,22 @@ class Spaceship extends GameObject {
         }
       }
       i++;
+    }
+    int e = 0;
+     while (e < objects.size()) {
+      GameObject objBullets = objects.get(e);
+      if (objBullets instanceof Bullet) {
+        if (dist(location.x, location.y, objBullets.location.x, objBullets.location.y) < diameter/2 + objBullets.diameter/2 && lives > 0 && objBullets.enemy) {
+          //for (int e = 3; e > 0; e--) {
+          //  glitcheffect(120, location.x, location.y);
+println("AIOSHF");
+          lives--;
+          objBullets.lives = 0;
+          objBullets.dead = true;
+          //println("iosfhe");
+        }
+      }
+      e++;
     }
   }
   

@@ -4,6 +4,7 @@ class GameObject {
   int lives;
   float diameter;
   boolean dead = false;
+  boolean enemy = false;
 
   GameObject(float locx, float locy, float velx, float vely) {
     location = new PVector(locx, locy);

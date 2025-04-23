@@ -17,6 +17,10 @@ void game () {
   fill(white);
   textSize(50);
   text(objects.get(0).lives, 30, 30);
+  text(objects.size(), 100, 100);
+  if (objects.size() <= 1) {
+   //mode = GAMEOVER; 
+  }
   //for (int i = 0; i < objects.size(); i++) {
   //  GameObject currentObject = objects.get(i);
   //  currentObject.show();
