@@ -1,21 +1,21 @@
 class UFO extends GameObject {
   //variables
   //PVector location, velocity,
-  PVector direction;
+  PVector direction;   ////how to make look at spaceship?????
   int cooldown;
 
   //constructor
   UFO() {
-    super(width/2 - 100, height/2, 0, 0);
+    super(random(0, width), random(0, height), random(0.1, 2), random(0.1, 2));
 
-    direction = new PVector(0.1, 0);
+    direction = new PVector(player1.location.x - location.x, player1.location.y - location.y);
     //make look at player
 
     cooldown = 0;
 
-    lives = 5;
+    lives = 3;
 
-    diameter = 30;
+    diameter = 50;
   }
 
   void show() {
@@ -30,7 +30,8 @@ class UFO extends GameObject {
     fill(black);
     stroke(white);
     strokeWeight(1);
-    circle(0, 0, 20);
+    triangle(-10, -10, -10, 10, 30, 0);
+    circle(0, 0, diameter);
     circle(0, 0, 5);
   }
 
@@ -38,11 +39,19 @@ class UFO extends GameObject {
     move();
     shoot();
     collisionCheck();
+    wrapAround();
   }
 
   void move() {
-    //location.add(velocity);
+    location.add(velocity);
     //println("why");
+    direction = new PVector(player1.location.x - location.x, player1.location.y - location.y);
+    //if (direction != new PVector(player1.location.x - location.x, player1.location.y - location.y)) {
+    //direction.rotate(atan((player1.location.y - location.y)/(player1.location.x - location.x)));
+    //}
+    
+    
+    //fixxxxxxxxxx thisssssss
     velocity.limit(4);
   }
 
@@ -50,7 +59,7 @@ class UFO extends GameObject {
     cooldown--;
     if (cooldown <= 0) {
       objects.add(new Bullet(true));
-      cooldown = 12;
+      cooldown = 50;
     }
   }
 
@@ -74,6 +83,17 @@ class UFO extends GameObject {
   }
 
   void death() {
+    if (lives == 0) dead = true;
+  }
+  
+   void wrapAround() {
+    if (location.x > width + diameter/2) lives = 0;
+
+    if (location.x < 0- diameter/2) lives = 0;
+
+    if (location.y > height + diameter/2) lives = 0;
+
+    if (location.y < 0 - diameter/2) lives = 0;
   }
 
   void keepOnScreen() {

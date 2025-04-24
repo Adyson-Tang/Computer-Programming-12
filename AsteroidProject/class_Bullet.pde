@@ -11,14 +11,14 @@ class Bullet extends GameObject {
     timer = 60;
     velocity.setMag(10);
     diameter = 5;
+    enemy = false;
 
   }
   Bullet (boolean enemy) {
-    super(theUFO.location.copy(), theUFO.direction.copy(), 1);
+    super(theUFO.location.copy(), theUFO.direction.copy(), 1, enemy);
     timer = 60;
     velocity.setMag(10);
     diameter = 5;
-    this.enemy = enemy;
   }
 
   void show() {
@@ -42,6 +42,9 @@ class Bullet extends GameObject {
    if (lives == 0) dead = true; 
   }
   
+  boolean isenemy() {
+   return enemy; 
+  }
   
   //boolean isOffScreen() {
   // return location.x > width || location.x < 0 || location.y < 0 || location.y > height; 

@@ -1,5 +1,6 @@
 void intro() {
   float go = random(10, 120);
+  
   resetGame();
   background(black);
   textFont(font1);
@@ -23,6 +24,7 @@ void intro() {
   glitcheffectStart(go, width/2, height/2);
   // glitch = 0;
   //}
+  
 }
 
 
@@ -33,12 +35,13 @@ void resetGame() {
   player1 = new Spaceship();
   objects.add(player1);
   spacekey = false;
-  objects.add(new UFO());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
+  theUFO = new UFO();
+  objects.add(theUFO);
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
 }

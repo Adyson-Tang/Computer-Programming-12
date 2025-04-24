@@ -48,7 +48,7 @@ class Asteroid extends GameObject {
     while (i < objects.size()) {
       GameObject objBullet = objects.get(i);
       if (objBullet instanceof Bullet) {
-        if (dist(location.x, location.y, objBullet.location.x, objBullet.location.y) < diameter/2 + objBullet.diameter/2 && lives > 0) {
+        if (dist(location.x, location.y, objBullet.location.x, objBullet.location.y) < diameter/2 + objBullet.diameter/2 && lives > 0 && !objBullet.enemy) {
           //for (int e = 3; e > 0; e--) {
           //  glitcheffect(120, location.x, location.y);
           //}

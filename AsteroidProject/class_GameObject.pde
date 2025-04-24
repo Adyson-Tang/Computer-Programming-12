@@ -25,6 +25,14 @@ class GameObject {
     //velocity.setMag(10);
     lives = lv;
   }
+  
+  GameObject(PVector loc, PVector vel, int lv, boolean enemy) {
+    location = loc;
+    velocity = vel;
+    //velocity.setMag(10);
+    lives = lv;
+    this.enemy = enemy;
+  }
 
   void act() {
     //act();

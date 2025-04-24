@@ -28,6 +28,8 @@ PFont font1, font2;
 
 ArrayList<GameObject> objects;
 
+float randomUFO;
+
 Spaceship player1;
 UFO theUFO;
 void setup () {
@@ -50,13 +52,13 @@ void setup () {
   theUFO = new UFO();
   objects.add(theUFO);
   objects.add(player1);
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
-  //objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
 }
 
 void draw() {

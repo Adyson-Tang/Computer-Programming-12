@@ -46,12 +46,12 @@ class Spaceship extends GameObject {
       velocity.add(0.4*direction.x, 0.4*direction.y);
       //println("why");
     }
-    if (leftkey) direction.rotate(-radians(4));
-    if (rightkey) direction.rotate(radians(4));
+    if (leftkey) direction.rotate(-radians(4.5));
+    if (rightkey) direction.rotate(radians(4.5));
 
     //keepOnScreen();
 
-    velocity.limit(4);
+    velocity.limit(1);
   }
 
   void shoot() {
