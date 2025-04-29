@@ -16,8 +16,8 @@ class Bullet extends GameObject {
   }
   Bullet (boolean enemy) {
     super(theUFO.location.copy(), theUFO.direction.copy(), 1, enemy);
-    timer = 60;
-    velocity.setMag(10);
+    timer = 120;
+    velocity.setMag(4);
     diameter = 5;
   }
 

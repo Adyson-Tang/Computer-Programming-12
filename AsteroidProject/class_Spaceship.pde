@@ -44,6 +44,7 @@ class Spaceship extends GameObject {
     location.add(velocity);
     if (upkey) {
       velocity.add(0.4*direction.x, 0.4*direction.y);
+      objects.add(new GlitchParticle(location));
       //println("why");
     }
     if (leftkey) direction.rotate(-radians(4.5));

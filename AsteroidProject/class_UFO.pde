@@ -12,6 +12,7 @@ class UFO extends GameObject {
     //make look at player
 
     cooldown = 0;
+    
 
     lives = 3;
 

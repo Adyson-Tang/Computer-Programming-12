@@ -3,7 +3,7 @@ class Asteroid extends GameObject {
 
   Asteroid() {
     super(random(width), random(height), 1, 1);
-    velocity.setMag(random(0.5, 2));
+    velocity.setMag(random(0.2, 1.3));
     velocity.rotate(random(TWO_PI));
     lives = 3;
     diameter = lives*30;
@@ -12,7 +12,7 @@ class Asteroid extends GameObject {
 
   Asteroid(float x, float y, int lives) {
     super(x, y, 1, 1);
-    velocity.setMag(random(0.5, 2));
+    velocity.setMag(random(0.2, 1.3));
     velocity.rotate(random(TWO_PI));
     this.lives = lives;
     diameter = lives*30;

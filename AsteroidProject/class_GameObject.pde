@@ -12,6 +12,12 @@ class GameObject {
     lives = 1;
   }
   
+  GameObject(PVector loc) {
+    location = loc;
+    //velocity.setMag(10);
+    lives = 1;
+  }
+  
   GameObject(PVector loc, PVector vel) {
     location = loc;
     velocity = vel;
