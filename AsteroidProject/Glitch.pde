@@ -24,9 +24,12 @@ void glitcheffectStart(float go, float x, float y) {
   } //else textFont(font1);
 }
 
-void glitcheffectRandom(float go, float x, float y) {
-  float w2 = x;
-  float h2 = y;
+void glitcheffectRandom(float go, float x, float y, float s) {
+  pushMatrix();
+  translate(x, y);
+  scale(s);
+  float w2 = 0;
+  float h2 = 0;
   int add, add1, add2, add3, add4, add5;
   if (go > 105) {
 
@@ -64,6 +67,7 @@ void glitcheffectRandom(float go, float x, float y) {
       //triangle(random(w2-100, w2+100), random(h2-60, h2 + 60), random(w2-100, w2+100), random(h2-60, h2 + 60), random(w2-100, w2+100), random(h2-60, h2 + 60));
     }
   } //else textFont(font1);
+  popMatrix();
 }
 
 class glitch {

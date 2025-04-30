@@ -3,20 +3,26 @@ class UFO extends GameObject {
   //PVector location, velocity,
   PVector direction;   ////how to make look at spaceship?????
   int cooldown;
+  boolean start = false;
 
   //constructor
   UFO() {
-    super(random(0, width), random(0, height), random(0.1, 2), random(0.1, 2));
+    super(random(-100, width + 100), random(-100, height + 100), random(0.1, 2), random(0.1, 2));
 
     direction = new PVector(player1.location.x - location.x, player1.location.y - location.y);
     //make look at player
 
     cooldown = 0;
-    
 
+    //still gotta make it spawn outside the area
     lives = 3;
 
     diameter = 50;
+
+    //while (location.x > diameter || location.x < width + diameter || location.y < d || location.y > height + d) {
+      location.x = random(-100, -diameter) + (width * int(random(0, 2)));
+      location.y = random(-100, -diameter) + (height * int(random(0, 2)));
+    //}
   }
 
   void show() {
@@ -40,6 +46,7 @@ class UFO extends GameObject {
     move();
     shoot();
     collisionCheck();
+    ifStart();
     wrapAround();
   }
 
@@ -50,8 +57,8 @@ class UFO extends GameObject {
     //if (direction != new PVector(player1.location.x - location.x, player1.location.y - location.y)) {
     //direction.rotate(atan((player1.location.y - location.y)/(player1.location.x - location.x)));
     //}
-    
-    
+
+
     //fixxxxxxxxxx thisssssss
     velocity.limit(4);
   }
@@ -86,24 +93,26 @@ class UFO extends GameObject {
   void death() {
     if (lives == 0) dead = true;
   }
-  
-   void wrapAround() {
-    if (location.x > width + diameter/2) lives = 0;
 
-    if (location.x < 0- diameter/2) lives = 0;
+  void wrapAround() {
+    if (start) {
+      if (location.x > width + diameter/2) lives = 0;
 
-    if (location.y > height + diameter/2) lives = 0;
+      if (location.x < 0- diameter/2) lives = 0;
 
-    if (location.y < 0 - diameter/2) lives = 0;
+      if (location.y > height + diameter/2) lives = 0;
+
+      if (location.y < 0 - diameter/2) lives = 0;
+    }
   }
 
-  void keepOnScreen() {
-    if (location.x > width) location.x = 0;
+  void ifStart() {
+    if (location.x < width) start = true;
 
-    if (location.x < 0) location.x = width;
+    if (location.x > 0) start = true;
 
-    if (location.y > height) location.y = 0;
+    if (location.y < height) start = true;
 
-    if (location.y < 0) location.y = height;
+    if (location.y > 0) start = true;
   }
 }

@@ -3,6 +3,7 @@ class Spaceship extends GameObject {
   //PVector location, velocity,
   PVector direction;
   int cooldown;
+  boolean glitch;
 
   //constructor
   Spaceship() {
@@ -30,6 +31,10 @@ class Spaceship extends GameObject {
     stroke(white);
     strokeWeight(1);
     triangle(-10, -10, -10, 10, 30, 0);
+    PVector alocation = new PVector(location.x-(direction.x*500), location.y-(direction.y*500));
+    if (glitch) {
+    objects.add(new GlitchParticle(alocation));
+    }
     circle(0, 0, 5);
   }
 
@@ -44,9 +49,9 @@ class Spaceship extends GameObject {
     location.add(velocity);
     if (upkey) {
       velocity.add(0.4*direction.x, 0.4*direction.y);
-      objects.add(new GlitchParticle(location));
+      glitch = true;
       //println("why");
-    }
+    } else glitch = false;
     if (leftkey) direction.rotate(-radians(4.5));
     if (rightkey) direction.rotate(radians(4.5));
 
@@ -87,7 +92,6 @@ class Spaceship extends GameObject {
         if (dist(location.x, location.y, objBullets.location.x, objBullets.location.y) < diameter/2 + objBullets.diameter/2 && lives > 0 && objBullets.enemy) {
           //for (int e = 3; e > 0; e--) {
           //  glitcheffect(120, location.x, location.y);
-println("AIOSHF");
           lives--;
           objBullets.lives = 0;
           objBullets.dead = true;

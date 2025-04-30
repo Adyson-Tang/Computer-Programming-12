@@ -6,7 +6,7 @@ class GlitchParticle extends GameObject{
   GlitchParticle(PVector location) {
     super(location);
     start = location;
-    timer = 50;
+    timer = 1;
     alpha = 100;
   }
 
@@ -35,18 +35,18 @@ class GlitchParticle extends GameObject{
       stroke(#000000);
       strokeWeight(1);
       fill(color(random(0, 100), random(98, 100), random (98, 100)));
-      add = int(random (-16, 16));
-      add1 = int(random (-13, 12));
-      add2 = int(random (-12, 5));
-      add3 = int(random (-16, 12));
-      add4 = int(random (-5, 20));
-      add5 = int(random (-10, 14));
-      if (n % 5 == 0) {
+      add = int(random (-35, 48));
+      add1 = int(random (-47, 25));
+      add2 = int(random (-57, 75));
+      add3 = int(random (-59, 20));
+      add4 = int(random (-53, 22));
+      add5 = int(random (-54, 75));
+      if (n % 2 == 0) {
         triangle(w2 + add, h2 + add1, w2 + add2, h2 + add3, w2 + add4, h2 + add5);
       }
 
       //add more triagles further away for bigger glitch vibe okkk
-      if (n%8==0 && go < 150) {
+      if (go < 102) {
         pushMatrix();
         translate(w2 + random(-30, 30), h2  + random(-20, 20));
         rotate(random(0, 2*PI));

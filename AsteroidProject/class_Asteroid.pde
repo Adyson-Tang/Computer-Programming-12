@@ -27,7 +27,7 @@ class Asteroid extends GameObject {
     line(location.x, location.y, location.x + diameter/2, location.y);
     if (lives < 3 && glitchlength > 0) {
       //println("iosfhe");
-      glitcheffectRandom(random(100, 200), location.x, location.y);
+      glitcheffectRandom(random(100, 200), location.x, location.y, lives + 0.3);
       glitchlength--;
     }  //maybe put in bullet class instead
     //can put depending on lives the asteroid design here

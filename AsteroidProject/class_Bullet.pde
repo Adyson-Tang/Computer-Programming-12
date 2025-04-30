@@ -5,6 +5,7 @@ class Bullet extends GameObject {
   //PVector velocity;
   int timer;
   boolean enemy = false;
+  boolean spider = false;
 
   Bullet() {
     super(player1.location.copy(), player1.direction.copy(), 1);
