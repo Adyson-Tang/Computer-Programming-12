@@ -11,6 +11,7 @@ void keyReleased() {
   if (keyCode == DOWN) downkey = false;
   if (keyCode == LEFT) leftkey = false;
   if (keyCode == RIGHT) rightkey = false;
+  if (key == 't') tkey = true;
   
   //if (keyCode == ENTER && mode == INTRO) {
   // mode = GAME; 

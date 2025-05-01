@@ -14,7 +14,7 @@ int glitch = 0;
 //PVector gravity;
 
 //keyboard booleans
-boolean upkey, downkey, leftkey, rightkey, spacekey = false;
+boolean upkey, downkey, leftkey, rightkey, spacekey, tkey = false;
 
 float d;
 
@@ -28,7 +28,9 @@ PFont font1, font2;
 
 ArrayList<GameObject> objects;
 
-float randomUFO;
+float randomUFO = 1;
+
+int teleportTimer = 200;
 
 Spaceship player1;
 UFO theUFO;

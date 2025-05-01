@@ -118,4 +118,28 @@ class Spaceship extends GameObject {
 
     if (location.y < 0) location.y = height;
   }
+  
+  void teleport() {
+   //boolean safe = false;
+   //ArrayList <Boolean> safe = new ArrayList();
+   PVector newlocation = new PVector(random(0, width), random(0, height));
+   int e = 0;
+     while (e < objects.size()) {
+      GameObject objAsteroids = objects.get(e);
+      if (objAsteroids instanceof Asteroid) {
+        if (dist(newlocation.x, newlocation.y, objAsteroids.location.x, objAsteroids.location.y) < diameter*2 + objAsteroids.diameter*2 && lives > 0 && objAsteroids.enemy) {
+          newlocation = new PVector(random(0, width), random(0, height));
+          //safe = true;
+          //figure out the safe thing maybe the array will work?
+        }
+      }
+      e++;
+    }
+    location = newlocation;
+   
+  }
+  
+  PVector getLoc() {
+   return location; 
+  }
 }

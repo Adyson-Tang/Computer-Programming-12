@@ -4,14 +4,15 @@ class UFO extends GameObject {
   PVector direction;   ////how to make look at spaceship?????
   int cooldown;
   boolean start = false;
+  int spawn = int(random(0, 4));
 
   //constructor
   UFO() {
-    super(random(-100, width + 100), random(-100, height + 100), random(0.1, 2), random(0.1, 2));
+    super(random(-100, width + 100), random(-100, height + 100), random(-2, 2), random(-2, 2));
 
     direction = new PVector(player1.location.x - location.x, player1.location.y - location.y);
     //make look at player
-
+    spawn = int(random(0, 4));
     cooldown = 0;
 
     //still gotta make it spawn outside the area
@@ -20,8 +21,32 @@ class UFO extends GameObject {
     diameter = 50;
 
     //while (location.x > diameter || location.x < width + diameter || location.y < d || location.y > height + d) {
-      location.x = random(-100, -diameter) + (width * int(random(0, 2)));
-      location.y = random(-100, -diameter) + (height * int(random(0, 2)));
+    if (spawn == 0) {
+      location.x = random(-100, width + 100);
+      location.y = -10;
+      //velocity = new PVector (random(-2, 2), random(0.1, 2));
+      spawn = -1;
+    } else if (spawn == 1) {
+      location.x = random(-100, width + 100);
+      location.y = width + 10;
+      //velocity = new PVector (random(-2, 2), random(-2, -0.1));
+      spawn = -1;
+    } else if (spawn == 2) {
+      location.x = -10;
+      location.y = random(-100, height + 100);
+      //velocity = new PVector (random(0.1, 2), random(-2, 2));
+      spawn = -1;
+    } else if (spawn == 3) {
+      location.x = width + 10;
+      location.y = random(-100, height + 100);
+      //velocity = new PVector (random(-2, -0.1), random(-2, 2));
+      spawn = -1;
+    }
+    
+    PVector center = new PVector (width/2, height/2);
+    velocity = PVector.sub(center, location);
+    velocity.normalize();
+    velocity.mult(2);
     //}
   }
 
@@ -44,7 +69,9 @@ class UFO extends GameObject {
 
   void act() {
     move();
-    shoot();
+    if (start) {
+      shoot();
+    }
     collisionCheck();
     ifStart();
     wrapAround();
@@ -91,7 +118,7 @@ class UFO extends GameObject {
   }
 
   void death() {
-    if (lives == 0) dead = true;
+    if (lives == 0 && start) dead = true;
   }
 
   void wrapAround() {
