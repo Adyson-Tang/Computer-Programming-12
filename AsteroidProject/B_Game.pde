@@ -1,9 +1,8 @@
 void game () {
-  background(#000000);
+  background(bg);
   randomUFO = random(-1, 300);
 
   if (randomUFO < 0 && theUFO.lives == 0) {
-    println("HIOA)");
     theUFO = new UFO();
     objects.add(theUFO);
   }
@@ -33,7 +32,7 @@ void game () {
   //teleport
   if (tkey) {
     player1.teleport();
-    println("UHS");
+    //println("UHS");
     teleportTimer = 200;
     tkey = false;
   } else {

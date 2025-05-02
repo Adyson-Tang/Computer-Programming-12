@@ -20,6 +20,7 @@ float d;
 
 color black = #000000;
 color white = #FFFFFF;
+color bg = #0A0A0A;
 
 boolean mouseReleased;
 boolean wasPressed;

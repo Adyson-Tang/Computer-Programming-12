@@ -2,7 +2,7 @@ class Spaceship extends GameObject {
   //variables
   //PVector location, velocity,
   PVector direction;
-  int cooldown;
+  int cooldown, teleport;
   boolean glitch;
 
   //constructor
@@ -12,9 +12,9 @@ class Spaceship extends GameObject {
     direction = new PVector(0.1, 0.0001);
 
     cooldown = 0;
-    
+
     lives = 5;
-    
+
     diameter = 30;
   }
 
@@ -23,6 +23,7 @@ class Spaceship extends GameObject {
     translate(location.x, location.y);
     rotate(direction.heading());
     drawShip();
+    teleportEffect();
     popMatrix();
   }
 
@@ -33,7 +34,7 @@ class Spaceship extends GameObject {
     triangle(-10, -10, -10, 10, 30, 0);
     PVector alocation = new PVector(location.x-(direction.x*500), location.y-(direction.y*500));
     if (glitch) {
-    objects.add(new GlitchParticle(alocation));
+      objects.add(new GlitchParticle(alocation));
     }
     circle(0, 0, 5);
   }
@@ -86,7 +87,7 @@ class Spaceship extends GameObject {
       i++;
     }
     int e = 0;
-     while (e < objects.size()) {
+    while (e < objects.size()) {
       GameObject objBullets = objects.get(e);
       if (objBullets instanceof Bullet) {
         if (dist(location.x, location.y, objBullets.location.x, objBullets.location.y) < diameter/2 + objBullets.diameter/2 && lives > 0 && objBullets.enemy) {
@@ -101,12 +102,12 @@ class Spaceship extends GameObject {
       e++;
     }
   }
-  
+
   void death() {
-   if (lives <= 0) {
-     dead = true;
-     mode = GAMEOVER;
-   }
+    if (lives <= 0) {
+      dead = true;
+      mode = GAMEOVER;
+    }
   }
 
   void keepOnScreen() {
@@ -118,28 +119,50 @@ class Spaceship extends GameObject {
 
     if (location.y < 0) location.y = height;
   }
-  
+
   void teleport() {
-   //boolean safe = false;
-   //ArrayList <Boolean> safe = new ArrayList();
-   PVector newlocation = new PVector(random(0, width), random(0, height));
-   int e = 0;
-     while (e < objects.size()) {
+    boolean safe = false;
+    int maxtries = 100;
+    //ArrayList <Boolean> safe = new ArrayList();
+    PVector newlocation = new PVector(random(0, width), random(0, height));
+    int e = 0;
+    while (e < objects.size() || !safe) {
+      if (!safe) e = 0;
       GameObject objAsteroids = objects.get(e);
+      safe = true;
       if (objAsteroids instanceof Asteroid) {
-        if (dist(newlocation.x, newlocation.y, objAsteroids.location.x, objAsteroids.location.y) < diameter*2 + objAsteroids.diameter*2 && lives > 0 && objAsteroids.enemy) {
+        while (dist(newlocation.x, newlocation.y, objAsteroids.location.x, objAsteroids.location.y) < diameter*2 + objAsteroids.diameter*2) {
+          safe = false;
           newlocation = new PVector(random(0, width), random(0, height));
+          //e = 0;
           //safe = true;
           //figure out the safe thing maybe the array will work?
+          //maybe add bullets finder thingy
         }
       }
       e++;
+      maxtries--;
+      if (maxtries <= 0) {
+        println("breakesr");
+        break;
+      }
     }
-    location = newlocation;
-   
+
+    if (maxtries > 0) {
+      teleport = 200;
+      location = newlocation;
+    } else {
+      fill(#FA2121, 50);
+      rect(width/2, height/2, width + 10, height + 10);
+      //background(#FA2121);
+    }
   }
   
-  PVector getLoc() {
-   return location; 
+  void teleportEffect() {
+    if (teleport > 0) {
+      fill(#FA2121);
+      circle(0 ,0, 10);
+    }
+    teleport--;
   }
 }

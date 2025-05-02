@@ -1,4 +1,4 @@
 void gameover() {
-  background(#000000);
+  background(bg);
   text ("GAMEOVER", width/2, height/2);
 }

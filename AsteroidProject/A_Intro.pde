@@ -2,7 +2,7 @@ void intro() {
   float go = random(10, 120);
   
   resetGame();
-  background(black);
+  background(bg);
   textFont(font1);
   Button introButton = new Button("START", width/2, height/2, 100, 50, white, black);
   //introButton.showDefault(); //String _t, int _x, int _y, int _w, int _h, color ch, color cn
