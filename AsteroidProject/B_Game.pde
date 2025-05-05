@@ -19,7 +19,7 @@ void game () {
       i++;
   }
 
-  fill(white);
+  fill(black);
   textSize(50);
   text(objects.get(0).lives, 30, 30);
   text(objects.size(), 100, 100);

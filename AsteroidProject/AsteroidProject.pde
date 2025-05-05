@@ -14,13 +14,13 @@ int glitch = 0;
 //PVector gravity;
 
 //keyboard booleans
-boolean upkey, downkey, leftkey, rightkey, spacekey, tkey = false;
+boolean upkey, downkey, leftkey, rightkey, spacekey, tkey, rkey = false;
 
 float d;
 
-color black = #000000;
 color white = #FFFFFF;
-color bg = #0A0A0A;
+color black = #000000;
+color bg = #DBD5E5;
 
 boolean mouseReleased;
 boolean wasPressed;

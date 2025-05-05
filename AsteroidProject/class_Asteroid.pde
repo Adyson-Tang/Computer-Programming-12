@@ -20,8 +20,8 @@ class Asteroid extends GameObject {
   }
 
   void show() {
-    fill(black);
-    stroke(white);
+    fill(0, 0);
+    stroke(black);
     strokeWeight(1);
     circle(location.x, location.y, diameter);
     line(location.x, location.y, location.x + diameter/2, location.y);

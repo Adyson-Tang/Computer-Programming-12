@@ -59,8 +59,8 @@ class UFO extends GameObject {
   }
 
   void drawShip() {
-    fill(black);
-    stroke(white);
+    fill(0, 0);
+    stroke(black);
     strokeWeight(1);
     triangle(-10, -10, -10, 10, 30, 0);
     circle(0, 0, diameter);

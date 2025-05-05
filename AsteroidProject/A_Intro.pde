@@ -4,7 +4,7 @@ void intro() {
   resetGame();
   background(bg);
   textFont(font1);
-  Button introButton = new Button("START", width/2, height/2, 100, 50, white, black);
+  Button introButton = new Button("START", width/2, height/2, 100, 50, black, white);
   //introButton.showDefault(); //String _t, int _x, int _y, int _w, int _h, color ch, color cn
   //glitcheffectt
   //need smth
