@@ -1,3 +1,8 @@
+import java.awt.Robot;
+
+Robot rbt;
+boolean skipFrame;
+
 boolean wkey, akey, skey, dkey;
 float eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ;
 float leftRightHeadAngle, upDownHeadAngle;
@@ -9,7 +14,7 @@ Block block1;
 Block block2;
 
 void setup() {
-  size (800, 600, P3D);
+  fullScreen(P3D);
   background(#000000);
   stroke(#FFFFFF);
   wkey = akey = skey = dkey = false;
@@ -29,6 +34,15 @@ void setup() {
 
   leftRightHeadAngle = radians(270 );
   upDownHeadAngle = 0;
+  
+  try {
+   rbt = new Robot(); 
+  } 
+  catch (Exception e) {
+   e.printStackTrace(); 
+  }
+  
+  skipFrame = false;
 
   diamond = loadImage("Diamond.png");
   cat = loadImage("cat.jpg");
@@ -43,12 +57,14 @@ void setup() {
 
 
 void draw() {
+  background(0);
+  noCursor();
   camera(eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ);
   drawFloor();
   drawFocalPoint();
   controlCamera();
-  background(0);
-  //pushMatrix();
+  
+  pushMatrix();
   translate(width/2, height/2, 0);
   scale(100);
   //rotateX(rotX);
@@ -57,92 +73,17 @@ void draw() {
   block.drawBlock();
 
 
-  //pushMatrix();
-  //translate(0, 0, 1);
-  //block1.drawBlock();
-  //popMatrix();
+  pushMatrix();
+  translate(0, 0, 1);
+  block1.drawBlock();
+  popMatrix();
 
 
-  //pushMatrix();
-  //translate(0, 0, -1);
-  //block2.drawBlock();
-  //popMatrix();
-
-
-  //beginShape(QUADS);
-  //texture(topDB);
-
-  ////top
-  //vertex(0, 0, 0, 0, 0);
-  //vertex(1, 0, 0, 1, 0);
-  //vertex(1, 0, 1, 1, 1);
-  //vertex(0, 0, 1, 0, 1);
-
-  ////bottom
-
-  ////side
-  //endShape();
-
-  //beginShape(QUADS);
-  //texture(topDB);
-  //vertex(0, 1, 0, 0, 0);
-  //vertex(1, 1, 0, 1, 0);
-  //vertex(1, 1, 1, 1, 1);
-  //vertex(0, 1, 1, 0, 1);
-
-  //endShape();
-
-  //beginShape(QUADS);
-  //texture(topDB);
-  //vertex(1, 0, 1, 1, 1);
-  //vertex(0, 0, 1, 0, 1);
-  //vertex(0, 1, 1, 0, 1);
-  //vertex(1, 1, 1, 1, 1);
-
-
-
-  //endShape();
-
-
-  ////pushMatrix();
-  ////rotateX(radians(270));
-  ////translate(0, -1);
-  //////rotateY(radians(180));
-  ////beginShape(QUADS);
-
-  //////top
-  ////vertex(0, 0, 0, 0, 0);
-  ////vertex(1, 0, 0, 1, 0);
-  ////vertex(1, 0, 1, 1, 1);
-  ////vertex(0, 0, 1, 0, 1);
-
-  ////texture(cat);
-  //////bottom
-  ////vertex(0, 1, 0, 0, 0);
-  ////vertex(1, 1, 0, 1, 0);
-  ////vertex(1, 1, 1, 1, 1);
-  ////vertex(0, 1, 1, 0, 1);
-
-  //////side
-  ////endShape();
-  ////popMatrix();
-
-  //popMatrix();
-
-
-
-
-
-
-
-
-
-
-
-  //background(#FFFFFF);
-
-
-
+  pushMatrix();
+  translate(0, 0, -1);
+  block2.drawBlock();
+  popMatrix();
+  popMatrix();
 
 
 
