@@ -8,6 +8,9 @@ void drawFocalPoint() {
 void drawFloor() {
   background(#000000);
   stroke(#FFFFFF);
+  strokeWeight(1);
+  //image(map, 0, 0, 4000, 4000);
+  //box(200);
   for (int x = -2000; x <= 2000; x = x + 100) {
     line(x, height, -2000, x, height, 2000);
     line(-2000, height, x, 2000, height, x);
@@ -15,26 +18,41 @@ void drawFloor() {
 }
 
 void controlCamera() {
-  if (wkey) {
-    eyeX = eyeX + cos(leftRightHeadAngle)*10;
-    eyeZ = eyeZ + sin(leftRightHeadAngle)*10;
+  if (wkey && canMoveForward()) {
+    eyeX = eyeX + cos(leftRightHeadAngle)*30;
+    eyeZ = eyeZ + sin(leftRightHeadAngle)*30;
   }
-  if (skey) {
-    eyeX = eyeX - cos(leftRightHeadAngle)*10;
-    eyeZ = eyeZ - sin(leftRightHeadAngle)*10;
+  if (skey && canMoveBack()) {
+    eyeX = eyeX - cos(leftRightHeadAngle)*30;
+    eyeZ = eyeZ - sin(leftRightHeadAngle)*30;
   }
-  if (akey) {
-    eyeX = eyeX - cos(leftRightHeadAngle + PI/2)*10;
-    eyeZ = eyeZ - sin(leftRightHeadAngle + PI/2)*10;
+  if (akey && canMoveLeft()) {
+    eyeX = eyeX - cos(leftRightHeadAngle + PI/2)*20;
+    eyeZ = eyeZ - sin(leftRightHeadAngle + PI/2)*20;
   }
-  if (dkey) {
-    eyeX = eyeX - cos(leftRightHeadAngle - PI/2)*10;
-    eyeZ = eyeZ - sin(leftRightHeadAngle - PI/2)*10;
+  if (dkey && canMoveRight()) {
+    eyeX = eyeX - cos(leftRightHeadAngle - PI/2)*20;
+    eyeZ = eyeZ - sin(leftRightHeadAngle - PI/2)*20;
   }
+  
+  if (downkey) {
+    eyeY = eyeY + 10;
+  }
+  
+  if (upkey) {
+    eyeY = eyeY - 10;
+  }
+  
   
   if (!skipFrame) {
      leftRightHeadAngle = leftRightHeadAngle + (mouseX - pmouseX) * 0.01;
      upDownHeadAngle = upDownHeadAngle + (mouseY - pmouseY)* 0.01;
+  }
+  if (leftkey) {
+    leftRightHeadAngle = leftRightHeadAngle - 2 * 0.01;
+  }
+  if (rightkey) {
+    leftRightHeadAngle = leftRightHeadAngle + 2 * 0.01;
   }
   //jump would change eyeY
 
@@ -70,6 +88,10 @@ void keyPressed() {
   if (key == 'A' || key == 'a') akey = true;
   if (key == 'D' || key == 'd') dkey = true;
   if (key == 'S' || key == 's') skey = true;
+  if (keyCode == DOWN) downkey = true;
+  if (keyCode == UP) upkey = true;
+  if (keyCode == LEFT) leftkey = true;
+  if (keyCode == RIGHT) rightkey = true;
 }
 
 void keyReleased() {
@@ -77,6 +99,11 @@ void keyReleased() {
   if (key == 'A' || key == 'a') akey = false;
   if (key == 'D' || key == 'd') dkey = false;
   if (key == 'S' || key == 's') skey = false;
+  if (keyCode == DOWN) downkey = false;
+  if (keyCode == UP) upkey = false;
+   if (keyCode == LEFT) leftkey = false;
+  if (keyCode == RIGHT) rightkey = false;
+  
 }
 
 void mouseDragged() {

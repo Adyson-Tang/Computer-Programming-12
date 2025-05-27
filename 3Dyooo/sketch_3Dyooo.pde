@@ -1,23 +1,35 @@
 import java.awt.Robot;
 
+import java.util.ArrayList;
+
 Robot rbt;
 boolean skipFrame;
 
-boolean wkey, akey, skey, dkey;
+boolean wkey, akey, skey, dkey, downkey, upkey, leftkey, rightkey;
 float eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ;
 float leftRightHeadAngle, upDownHeadAngle;
 float rotY, rotX;
 PImage diamond, cat;
 PImage topDB, sideDB, bottomDB;
+
+ArrayList<Boolean> collisions = new ArrayList();
+boolean collision;
 Block block;
 Block block1;
 Block block2;
+
+color white = #FFFFFF;
+
+PImage map;
+int gridSize;
+
+ArrayList<Block> blocks = new ArrayList();
 
 void setup() {
   fullScreen(P3D);
   background(#000000);
   stroke(#FFFFFF);
-  wkey = akey = skey = dkey = false;
+  wkey = akey = skey = dkey = downkey = rightkey = leftkey = false;
 
   eyeX = width/2;
   eyeY = height/2;
@@ -53,6 +65,14 @@ void setup() {
   block = new Block(topDB, sideDB, bottomDB);
   block1 = new Block();
   block2 = new Block(topDB, sideDB, sideDB, sideDB, sideDB, bottomDB);
+  
+  map = loadImage("Untitled.png");
+  gridSize = 100;
+  
+  drawMap();
+  blocks.add(new Block());
+ 
+  collision = false; 
 }
 
 
@@ -64,25 +84,31 @@ void draw() {
   drawFocalPoint();
   controlCamera();
   
+ 
+  
+  
   pushMatrix();
-  translate(width/2, height/2, 0);
-  scale(100);
+  translate(+50, height - 50, +50);
+  scale(gridSize, 1000, gridSize);
   //rotateX(rotX);
   //rotateY(rotY);
   noStroke();
-  block.drawBlock();
+  drawdrawMap();
+  //block.drawBlock();
 
 
-  pushMatrix();
-  translate(0, 0, 1);
-  block1.drawBlock();
-  popMatrix();
+  //pushMatrix();
+  //translate(0, 0, 1);
+  //block1.drawBlock();
+  //popMatrix();
 
 
-  pushMatrix();
-  translate(0, 0, -1);
-  block2.drawBlock();
-  popMatrix();
+  //pushMatrix();
+  //translate(0, 0, -1);
+  //block2.drawBlock();
+  //popMatrix();
+  
+  
   popMatrix();
 
 
