@@ -13,7 +13,7 @@ void drawMap() {
     // popMatrix();
     //}
     if (c != white) {
-     blocks.add(new Block(x - 20, 0, y - 20, c)); 
+     objects.add(new Block(x - 20, 0, y - 20, c)); 
     }
    }
   }
@@ -21,7 +21,8 @@ void drawMap() {
 }
 
 void drawdrawMap() {
- for (int i = 0; i < blocks.size(); i++) {
-    blocks.get(i).drawBlock();
+ for (int i = 0; i < objects.size(); i++) {
+    objects.get(i).show();
+    objects.get(i).act();
   } 
 }
