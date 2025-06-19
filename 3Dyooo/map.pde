@@ -1,7 +1,8 @@
 void drawMap() {
   
-  for (int x= 0; x <= map.width; x++) {
+  for (int x = 0; x <= map.width; x++) {
    for (int y = 0; y <= map.height; y++) {
+//println(map.width + " " + map.height);
     color c = map.get(x, y);
     //if (c != white) {
     // pushMatrix();
@@ -13,7 +14,7 @@ void drawMap() {
     // popMatrix();
     //}
     if (c != white) {
-     objects.add(new Block(x - 20, 0, y - 20, c)); 
+     objects.add(new Block(x - size/gridSize, 0, y - size/gridSize, c)); 
     }
    }
   }
@@ -21,8 +22,18 @@ void drawMap() {
 }
 
 void drawdrawMap() {
+ if (clicked) {
+   //println("wtf");
+  //objects.add(new ball());
+  clicked = false;
+ }
  for (int i = 0; i < objects.size(); i++) {
     objects.get(i).show();
     objects.get(i).act();
+    if (!objects.get(i).alive) {
+      objects.remove(i);
+      i--;
+      //println("SALKJ");
+    }
   } 
 }

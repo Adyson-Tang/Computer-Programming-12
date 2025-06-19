@@ -1,5 +1,5 @@
 void ball(float x, float y, float z, color c, float size) {
- pushMatrix();
+  pushMatrix();
   translate(x, y, z);
 
   rotateX(rotX);
@@ -8,5 +8,5 @@ void ball(float x, float y, float z, color c, float size) {
   stroke(c);
 
   sphere(size);
-  popMatrix(); 
+  popMatrix();
 }

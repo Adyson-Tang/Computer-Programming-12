@@ -50,6 +50,17 @@ class Block extends GameObject{
     colour = true;
   }
   
+  Block(int x, int y, int z, PImage top, PImage side, PImage bottom) {
+    super (x, y, z);
+    this.top = top;
+    this.backside = side;
+    this.leftside = side;
+    this.rightside = side;
+    this.frontside = side;
+    this.bottom = bottom;
+    colour = false;
+  }
+  
   
   void show() {
     if (!colour) {

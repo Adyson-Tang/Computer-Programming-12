@@ -18,6 +18,7 @@ class GameObject {
   }
   GameObject(float locx, float locy, float locz) {
     location = new PVector(locx, locy, locz); 
+    velocity = new PVector(0, 0, 0);
   }
   GameObject(float locx, float locy, float locz, PShape s) {
    location = new PVector(locx, locy, locz);

@@ -19,40 +19,42 @@ void drawFloor() {
 
 void controlCamera() {
   if (wkey && canMoveForward()) {
-    eyeX = eyeX + cos(leftRightHeadAngle)*15;
-    eyeZ = eyeZ + sin(leftRightHeadAngle)*15;
+    eyeX = eyeX + cos(leftRightHeadAngle)*20;
+    eyeZ = eyeZ + sin(leftRightHeadAngle)*20;
+    //eyeY = eyeY + sin(upDownHeadAngle) * 15;
   //  objects.add(new Models(0, 0, 0, random(0, 2*PI), random(0.7, 1.1), flower));
   //objects.add(new Models(1, 0, 0, random(0, 2*PI), random(0.7, 1.1), flower));
   //objects.add(new Models(0, 0, 2, random(0, 2*PI), random(0.7, 1.1), flower));
+  //to reduce lag
     flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
-    regenGrain();
+    //regenGrain();
   }
   if (skey && canMoveBack()) {
     eyeX = eyeX - cos(leftRightHeadAngle)*15;
     eyeZ = eyeZ - sin(leftRightHeadAngle)*15;
     flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
-    regenGrain();
+    //regenGrain();
   }
   if (akey && canMoveLeft()) {
     eyeX = eyeX - cos(leftRightHeadAngle + PI/2)*10;
     eyeZ = eyeZ - sin(leftRightHeadAngle + PI/2)*10;
     flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
-    regenGrain();
+    //regenGrain();
   }
   if (dkey && canMoveRight()) {
     eyeX = eyeX - cos(leftRightHeadAngle - PI/2)*10;
     eyeZ = eyeZ - sin(leftRightHeadAngle - PI/2)*10;
     flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
-    regenGrain();
+    //regenGrain();
   }
   
-  if (downkey) {
-    eyeY = eyeY + 10;
-  }
+  //if (downkey) {
+  //  eyeY = eyeY + 10;
+  //}
   
-  if (upkey) {
-    eyeY = eyeY - 10;
-  }
+  //if (upkey) {
+  //  eyeY = eyeY - 10;
+  //}
   
   
   if (!skipFrame) {
@@ -66,7 +68,7 @@ void controlCamera() {
     leftRightHeadAngle = leftRightHeadAngle + 2 * 0.01;
   }
   //jump would change eyeY
-
+  jump();
   leftRightHeadAngle += (mouseX - pmouseX)* 0.01;
   //
   upDownHeadAngle += (mouseY - pmouseY) * 0.01;
@@ -108,32 +110,4 @@ void controlCamera() {
   //}
   //println(mouseX + " " + mouseY);
   
-}
-
-void keyPressed() {
-  if (key == 'W' || key == 'w') wkey = true;
-  if (key == 'A' || key == 'a') akey = true;
-  if (key == 'D' || key == 'd') dkey = true;
-  if (key == 'S' || key == 's') skey = true;
-  if (keyCode == DOWN) downkey = true;
-  if (keyCode == UP) upkey = true;
-  if (keyCode == LEFT) leftkey = true;
-  if (keyCode == RIGHT) rightkey = true;
-}
-
-void keyReleased() {
-  if (key == 'W' || key == 'w') wkey = false;
-  if (key == 'A' || key == 'a') akey = false;
-  if (key == 'D' || key == 'd') dkey = false;
-  if (key == 'S' || key == 's') skey = false;
-  if (keyCode == DOWN) downkey = false;
-  if (keyCode == UP) upkey = false;
-   if (keyCode == LEFT) leftkey = false;
-  if (keyCode == RIGHT) rightkey = false;
-  
-}
-
-void mouseDragged() {
-  rotX = rotX + (pmouseY - mouseY) * 0.01;
-  rotY = rotY + (pmouseX - mouseX) * 0.01;
 }

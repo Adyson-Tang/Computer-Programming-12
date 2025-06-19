@@ -8,8 +8,8 @@ boolean canMoveForward() {
   //fwdy = eyeY;
   fwdz = eyeZ + sin(leftRightHeadAngle)*150;
 
-  mapx = int(fwdx + 2000) / gridSize;
-  mapy = int(fwdz + 2000) / gridSize;
+  mapx = int(fwdx + size) / gridSize;
+  mapy = int(fwdz + size) / gridSize;
   
   if (map.get(mapx, mapy) == white) {
     //println(eyeX + " " + eyeZ);
@@ -27,8 +27,8 @@ boolean canMoveBack() {
   //fwdy = eyeY;
   bcky = eyeZ - sin(leftRightHeadAngle)*150;
 
-  mapx = int(bckx + 2000) / gridSize;
-  mapy = int(bcky + 2000) / gridSize;
+  mapx = int(bckx + size) / gridSize;
+  mapy = int(bcky + size) / gridSize;
   
   if (map.get(mapx, mapy) == white) {
     //println(eyeX + " " + eyeZ);
@@ -48,8 +48,8 @@ boolean canMoveLeft() {
   //fwdy = eyeY;
   rghty = eyeZ - sin(leftRightHeadAngle + PI/2)*150;
 
-  mapx = int(rghtx + 2000) / gridSize;
-  mapy = int(rghty + 2000) / gridSize;
+  mapx = int(rghtx + size) / gridSize;
+  mapy = int(rghty + size) / gridSize;
   
   if (map.get(mapx, mapy) == white) {
     //println(eyeX + " " + eyeZ);
@@ -62,18 +62,28 @@ boolean canMoveRight() {
   int mapx, mapy;
   
   
-  
   rghtx = eyeX - cos(leftRightHeadAngle - PI/2)*150;
   //eyeX - cos(leftRightHeadAngle + PI/2)*10;
     //eyeZ = eyeZ - sin(leftRightHeadAngle + PI/2)*10;
   //fwdy = eyeY;
   rghty = eyeZ - sin(leftRightHeadAngle - PI/2)*150;
 
-  mapx = int(rghtx + 2000) / gridSize;
-  mapy = int(rghty + 2000) / gridSize;
+  mapx = int(rghtx + size) / gridSize;
+  mapy = int(rghty + size) / gridSize;
   
   if (map.get(mapx, mapy) == white) {
     //println(eyeX + " " + eyeZ);
    return true; 
   }else return false;
+}
+
+void jump() {
+ if (spacekey) {
+  eyeY = eyeY + velocity;
+  velocity = velocity + gravity; 
+ }
+ if (eyeY >= height/2) {
+  velocity = 0; 
+  spacekey = false;
+ }
 }

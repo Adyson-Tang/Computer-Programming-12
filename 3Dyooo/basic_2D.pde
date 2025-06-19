@@ -10,16 +10,19 @@ void grain() {
     image(grain, 0, 0);
     noTint();
     popMatrix();
+    blendMode(ADD);
     fill(grainHue, grainSat, grainBri, grainOpa);
     rect(0, 0, width, height);
+    blendMode(BLEND);
 
 }
 void regenGrain() {
+  //int 
   grainR = random(0, 2*PI);
   grainHue = 30;
   grainSat = 70;
   grainBri = 85;
-  grainOpa = 40;
+  grainOpa = 30;
   grainX = random(width/2-100, width/2 + 100);
   grainY = random(height/2 - 100, height/2 + 100);
   grainSize = 4;
