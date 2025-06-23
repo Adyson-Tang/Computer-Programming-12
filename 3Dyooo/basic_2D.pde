@@ -27,3 +27,26 @@ void regenGrain() {
   //grainY = random(height/2 - 100, height/2 + 100);
   //grainSize = 4;
 }
+
+void generateGrain() {
+  //HUD.clear(); // clears with transparent background
+  HUD.beginDraw();
+  HUD.clear();
+  HUD.noStroke();
+
+  // Draw lots of semi-transparent random noise dots
+  for (int i = 0; i < width; i += 10) {
+    float x = i;
+    for (int e = 0; e < height; e += 10) {
+     float y = e;
+    float h = random(0, 360); // light gray
+    float s = random(0, 20);
+    float b = random(0, 100);
+    float a = random(4, 30);  // transparency
+    HUD.fill(h, s, b, a);
+    HUD.rect(x, y, 10, 10);
+  }
+  }
+
+  HUD.endDraw();
+}
