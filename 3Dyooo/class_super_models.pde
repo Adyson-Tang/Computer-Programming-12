@@ -1,22 +1,22 @@
-class Models extends GameObject {
+class Flower extends GameObject {
   int timer = int(random(200, 250));
   int pick = int(random(0,12));
   boolean Multi = false;
-  Models() {
+  Flower() {
     super(0, 0, 0);
   }
 
-  Models(float x, float y, float z, PShape s) {
+  Flower(float x, float y, float z, PShape s) {
     super(x, y, z, s);
     pick = int(random(0,12));
   }
 
-  Models(float x, float y, float z, float ry, float scale, PShape model) {
+  Flower(float x, float y, float z, float ry, float scale, PShape model) {
     super(x, y, z, ry, scale, model);
     pick = int(random(0,12));
   }
   
-  Models(float x, float y, float z, float ry, float scale, PShape model, PShape model1) {
+  Flower(float x, float y, float z, float ry, float scale, PShape model, PShape model1) {
     super(x, y, z, ry, scale, model, model1);
     pick = int(random(0,12));
     timer = int(random(90, 120));

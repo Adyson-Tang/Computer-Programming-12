@@ -7,23 +7,23 @@ void grain() {
     pushMatrix();
     translate(grainX, grainY);
     rotate(grainR);
-    image(grain, 0, 0);
+    //image(grain, 0, 0);
     noTint();
     popMatrix();
-    blendMode(ADD);
+    //blendMode(ADD);
     fill(grainHue, grainSat, grainBri, grainOpa);
     rect(0, 0, width, height);
-    blendMode(BLEND);
+    //blendMode(BLEND);
 
 }
 void regenGrain() {
   //int 
-  grainR = random(0, 2*PI);
+  //grainR = random(0, 2*PI);
   grainHue = 30;
-  grainSat = 70;
-  grainBri = 85;
-  grainOpa = 30;
-  grainX = random(width/2-100, width/2 + 100);
-  grainY = random(height/2 - 100, height/2 + 100);
-  grainSize = 4;
+  grainSat = 80;
+  grainBri = 60;
+  grainOpa = 45;
+  //grainX = random(width/2-100, width/2 + 100);
+  //grainY = random(height/2 - 100, height/2 + 100);
+  //grainSize = 4;
 }

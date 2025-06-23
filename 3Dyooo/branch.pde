@@ -2,6 +2,7 @@ class Branch extends GameObject {
   float bend1, bend2, bend3;
   int timer = 100;
   float r, s;
+  boolean held;
   color c = #391B14;
   Branch() {
     super(0, height, 0);
@@ -10,6 +11,7 @@ class Branch extends GameObject {
     bend3 = random(radians(-15), radians(15));
     s = random(0.5, 1);
     r = random(PI);
+    held = true;
   }
 
   Branch(float x, float y, float z) {
@@ -19,6 +21,7 @@ class Branch extends GameObject {
     bend3 = random(radians(-15), radians(15));
     s = random(0.5, 1);
     r = random(0, 2*PI);
+    held = false;
   }
 
   Branch(float x, float y, float z, float vx, float vy, float vz) {
@@ -28,12 +31,13 @@ class Branch extends GameObject {
     bend3 = random(radians(-15), radians(15));
     s = random(0.5, 1);
     r = random(0, 2*PI);
+    held = false;
   }
 
   void act() {
     location.add(velocity);
     if (velocity.x != 0) {
-      velocity.y += pow(1.01, 100 - timer);
+      velocity.y += pow(1.1, 100 - timer);
       timer--;
       if (location.y >= height) {
         velocity = new PVector(0, 0, 0);
@@ -50,8 +54,11 @@ class Branch extends GameObject {
     world.fill(c);
     world.pushMatrix();
     world.translate(location.x, location.y, location.z);
-    world.rotateZ(PI/2);
-    world.rotateX(r);
+      world.rotateZ(PI/2);
+      world.rotateX(r);
+      if (held) {
+       world.rotateZ(-PI/4); 
+      }
     world.scale(s);
     // First segment
     world.pushMatrix();

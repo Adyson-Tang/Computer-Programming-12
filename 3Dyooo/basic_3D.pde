@@ -26,35 +26,35 @@ void controlCamera() {
   //objects.add(new Models(1, 0, 0, random(0, 2*PI), random(0.7, 1.1), flower));
   //objects.add(new Models(0, 0, 2, random(0, 2*PI), random(0.7, 1.1), flower));
   //to reduce lag
-    flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
+    flowers.add(new Flower(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
     //regenGrain();
   }
   if (skey && canMoveBack()) {
     eyeX = eyeX - cos(leftRightHeadAngle)*15;
     eyeZ = eyeZ - sin(leftRightHeadAngle)*15;
-    flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
+    flowers.add(new Flower(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
     //regenGrain();
   }
   if (akey && canMoveLeft()) {
     eyeX = eyeX - cos(leftRightHeadAngle + PI/2)*10;
     eyeZ = eyeZ - sin(leftRightHeadAngle + PI/2)*10;
-    flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
+    flowers.add(new Flower(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
     //regenGrain();
   }
   if (dkey && canMoveRight()) {
     eyeX = eyeX - cos(leftRightHeadAngle - PI/2)*10;
     eyeZ = eyeZ - sin(leftRightHeadAngle - PI/2)*10;
-    flowers.add(new Models(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
+    flowers.add(new Flower(eyeX+ random(-50, 150), height, eyeZ + random(-50, 150), random(0, 2*PI), random(1.5, 2), flowerA, flowerC));
     //regenGrain();
   }
   
-  //if (downkey) {
-  //  eyeY = eyeY + 10;
-  //}
+  if (downkey) {
+    eyeY = eyeY + 10;
+  }
   
-  //if (upkey) {
-  //  eyeY = eyeY - 10;
-  //}
+  if (upkey) {
+    eyeY = eyeY - 10;
+  }
   
   
   if (!skipFrame) {
