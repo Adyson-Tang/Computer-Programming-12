@@ -55,6 +55,11 @@ int numRain = 1000;
 
 Block test;
 
+//fence
+int numPosts = 100;
+float postHeight = 500;
+float postWidth = 10;
+
 void setup() {
   //canvases // Must match world renderer
   world = createGraphics(width, height, P3D);
@@ -68,7 +73,7 @@ void setup() {
   wkey = akey = skey = dkey = downkey = rightkey = leftkey = false;
 
   eyeX = 0;
-  eyeY = height/2;
+  eyeY = height/2 - 30;
   eyeZ = 0;
   focusX = width/2;
   focusY = height/2;
@@ -145,7 +150,7 @@ void setup() {
   for (int e = 0; e <= numRain; e++) {
     rain1.add(new RainDrop());
   }
-  skySphere = createSkySphere(size);
+  skySphere = createSkySphere(size * 2);
 }
 
 
@@ -216,7 +221,11 @@ void draw() {
     }
   }
   world.popMatrix();
-
+  
+  world.pushMatrix();
+  world.translate(0, height, 0);
+  drawFence();
+  world.popMatrix();
   //for (int i = 0; i < rain.size(); i++) {
   //  rain.get(i).show();
   //  rain.get(i).act();
