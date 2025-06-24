@@ -16,12 +16,13 @@ void general() {
     }
   }
   if (pickedup) {
-   held.location = new PVector(focusX + 100, focusY, focusZ - sin(leftRightHeadAngle)*10);
+   held.location = new PVector(eyeX + cos(leftRightHeadAngle - 100)*300, focusY + sin(upDownHeadAngle) * 300, eyeZ + sin(leftRightHeadAngle - 100)*300);
    held.r = -leftRightHeadAngle;
    held.show();
   }
   if (clicked && pickedup) {
     //println("L");
+    
     throwable.add(new ball());
     clicked = false;
     pickedup = false;

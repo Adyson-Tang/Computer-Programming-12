@@ -22,7 +22,7 @@ void regenGrain() {
   grainHue = 30;
   grainSat = 80;
   grainBri = 60;
-  grainOpa = 45;
+  grainOpa = 25;
   //grainX = random(width/2-100, width/2 + 100);
   //grainY = random(height/2 - 100, height/2 + 100);
   //grainSize = 4;

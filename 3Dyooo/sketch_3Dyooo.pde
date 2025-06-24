@@ -13,25 +13,25 @@ float rotY, rotX;
 PImage diamond, cat;
 PImage topDB, sideDB, bottomDB;
 
-color bg = #4281C1;
-
 ArrayList<Boolean> collisions = new ArrayList();
 boolean collision;
 Block block;
 Block block1;
 Block block2;
 
+color bg = #4281C1;
 color white = #FFFFFF;
+color rainc = #CBE5FF;
 
 PImage map;
 int hold = 20;
 int gridSize, size;
-PShape car;
-PShape flowerA, flowerC, stick;
+PShape flowerA, flowerC, stick, skySphere;
 
 Branch held = new Branch();
 ArrayList<GameObject> objects = new ArrayList();
-ArrayList<GameObject> rain = new ArrayList();
+ArrayList<GameObject> rain1 = new ArrayList();
+ArrayList<GameObject> splashes = new ArrayList();
 ArrayList<GameObject> flowers = new ArrayList();
 ArrayList<GameObject> throwable = new ArrayList();
 ArrayList<GameObject> branches = new ArrayList();
@@ -40,16 +40,18 @@ ArrayList<GameObject> branches = new ArrayList();
 PGraphics world;
 PGraphics HUD;
 
+
 //grain settings
 float grainHue, grainSat, grainBri, grainOpa, grainX, grainY, grainSize, grainR = 0;
 
-PImage grain, grass;
+PImage grain, grass, sky;
 
 float velocity = -20;
-float gravity = 0.98;
+float gravity = 1.1;
 boolean clicked = false;
 
 int numBranches = 50;
+int numRain = 1000;
 
 Block test;
 
@@ -93,6 +95,7 @@ void setup() {
   diamond = loadImage("Diamond.png");
   cat = loadImage("cat.jpg");
   grass = loadImage("grass.jpg");
+  sky = loadImage("sky.jpg");
   topDB = loadImage("Grass_Block_Top_C.png");
   sideDB = loadImage("Grass_Block_Side.png");
   bottomDB = loadImage("Dirt_Bottom.png");
@@ -113,8 +116,6 @@ void setup() {
 
   collision = false;
 
-  car = loadShape("Car.obj");
-  car.rotate(90);
 
   flowerA = world.loadShape("flowerA.obj");
   flowerA.rotateX(PI/2);
@@ -139,6 +140,12 @@ void setup() {
   for (int e = 0; e <= numBranches; e++) {
     branches.add(new Branch(random(-size, size), height, random(-size, size)));
   }
+ 
+  
+  for (int e = 0; e <= numRain; e++) {
+    rain1.add(new RainDrop());
+  }
+  skySphere = createSkySphere(size);
 }
 
 
@@ -150,19 +157,26 @@ void draw() {
   noCursor();
 
   //lights!
-  world.pointLight(33, 34, 86, eyeX, eyeY, eyeZ);
-  world.ambientLight(30, 80, 90);
 
 
   world.camera(eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ);
+
+  //drawFocalPoint();
+  controlCamera();
+  
+  world.noLights();
   world.pushMatrix();
+  world.translate(eyeX, 0, eyeZ);
+   world.shape(skySphere);
+   world.popMatrix();
+  // world.lights();
+     world.pointLight(33, 34, 86, eyeX, eyeY, eyeZ);
+  world.ambientLight(30, 80, 90);
+  
+    world.pushMatrix();
   world.translate(0, 0, 0);
   drawFloor();
   world.popMatrix();
-
-  drawFocalPoint();
-  controlCamera();
-
   // pushMatrix();
   // scale(1000);
 
@@ -203,14 +217,19 @@ void draw() {
   }
   world.popMatrix();
 
-  for (int i = 0; i < rain.size(); i++) {
-    rain.get(i).show();
-    rain.get(i).act();
-    if (!rain.get(i).alive) {
-      rain.remove(i);
-      i--;
-      //println("SALKJ");
-    }
+  //for (int i = 0; i < rain.size(); i++) {
+  //  rain.get(i).show();
+  //  rain.get(i).act();
+  //}
+  
+  for (int i = 0; i < rain1.size(); i++) {
+    rain1.get(i).show();
+    rain1.get(i).act();
+  }
+  
+   for (int i = 0; i < splashes.size(); i++) {
+    splashes.get(i).show();
+    splashes.get(i).act();
   }
   //testnig prints
   //println(flowers.size());
@@ -236,6 +255,10 @@ void draw() {
   imageMode(CENTER);
   image(world, width/2, height/2);
   //HUD.beginDraw();
+  generateGrain();
+  tint(255, int(random(100, 180))); // random flicker
+  image(HUD, width/2, height/2);
+  noTint();
   grain();
   regenGrain();
   //HUD.endDraw();

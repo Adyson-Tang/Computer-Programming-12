@@ -33,7 +33,7 @@ class RainDrop extends GameObject {
 class Splash extends GameObject {
   float size = 0;
   float maxSize = 10;
-  int lifespan = 50;
+  int lifespan = 100;
   int age = 0;
   ArrayList <Particle> particles = new ArrayList();
 
@@ -41,10 +41,10 @@ class Splash extends GameObject {
     super(x, y, z);
     alive = true;
     for (float angle = 0; angle < TWO_PI; angle += PI/6) {
-      float speed = random(1, 2);
+      float speed = random(2, 3);
       float dx = cos(angle) * speed;
       float dz = sin(angle) * speed;
-      float dy = random(-2, -1); // negative = upward
+      float dy = random(-3, -2); // negative = upward
 
       particles.add(new Particle(location.x, location.y, location.z, dx, dy, dz));
     }
